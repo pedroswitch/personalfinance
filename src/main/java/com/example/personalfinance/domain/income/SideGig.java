@@ -4,7 +4,7 @@ import com.example.personalfinance.domain.valueobjects.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @Getter
 public class SideGig extends Income
 {
