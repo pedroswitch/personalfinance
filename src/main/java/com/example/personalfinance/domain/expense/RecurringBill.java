@@ -1,8 +1,10 @@
 package com.example.personalfinance.domain.expense;
 
 import com.example.personalfinance.domain.valueobjects.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+@EqualsAndHashCode
 @Getter
 public class RecurringBill extends Expense
 {

@@ -1,8 +1,10 @@
 package com.example.personalfinance.domain.income;
 
 import com.example.personalfinance.domain.valueobjects.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+@EqualsAndHashCode
 @Getter
 public class Salary extends Income
 {

@@ -1,19 +1,19 @@
 package com.example.personalfinance.domain.income;
 
 import com.example.personalfinance.domain.valueobjects.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+@EqualsAndHashCode
 @Getter
 public class SideGig extends Income
 {
 
-    private final SideGigType type;
     private final SideGigName name;
 
-    public SideGig(IncomeId id, Date date, Values value, SideGigType type, SideGigName name)
+    public SideGig(IncomeId id, Date date, Values value, SideGigName name)
     {
         super(id, date, value);
-        this.type = type;
         this.name = name;
     }
 
@@ -27,7 +27,6 @@ public class SideGig extends Income
 
         if (!getId().equals(that.getId())) return false;
         if (!getDate().equals(that.getDate())) return false;
-        if (!getType().equals(that.getType())) return false;
         if (!getName().equals(that.getName())) return false;
         return (getValue().equals(that.getValue()));
     }
