@@ -1,9 +1,6 @@
 package com.example.personalfinance.domain.income;
 
-import com.example.personalfinance.domain.valueobjects.Date;
-import com.example.personalfinance.domain.valueobjects.EmployerName;
-import com.example.personalfinance.domain.valueobjects.IncomeId;
-import com.example.personalfinance.domain.valueobjects.Values;
+import com.example.personalfinance.domain.valueobjects.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
