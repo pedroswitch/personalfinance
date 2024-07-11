@@ -25,6 +25,6 @@ public class Salary extends Income
         if (!getId().equals(that.getId())) return false;
         if (!getDate().equals(that.getDate())) return false;
         if (!getName().equals(that.getName())) return false;
-        return (!getValue().equals(that.getValue()));
+        return (getValue().equals(that.getValue()));
     }
 }

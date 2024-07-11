@@ -10,7 +10,7 @@ public class SideGig extends Income
     private final SideGigType type;
     private final SideGigName name;
 
-    public SideGig(IncomeId id, Date date, SideGigType type, SideGigName name, Values value)
+    public SideGig(IncomeId id, Date date, Values value, SideGigType type, SideGigName name)
     {
         super(id, date, value);
         this.type = type;
@@ -29,6 +29,6 @@ public class SideGig extends Income
         if (!getDate().equals(that.getDate())) return false;
         if (!getType().equals(that.getType())) return false;
         if (!getName().equals(that.getName())) return false;
-        return (!getValue().equals(that.getValue()));
+        return (getValue().equals(that.getValue()));
     }
 }

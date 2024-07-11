@@ -7,11 +7,15 @@ import lombok.Getter;
 public class InvoiceRegistration extends Expense
 {
     private final Date date;
+    private final InvoiceNumber number;
+    private final ExpenseStatus status;
 
-    public InvoiceRegistration(ExpenseId id, Date date, ExpenseSupplier supplier, ExpenseCategory category, Values value, ExpenseStatus status)
+    public InvoiceRegistration(ExpenseId id, Date date, ExpenseSupplier supplier, InvoiceNumber number, ExpenseCategory category, Values value, ExpenseStatus status)
     {
-        super(id, supplier, category, value, status);
+        super(id, supplier, category, value);
+        this.number = number;
         this.date = date;
+        this.status = status;
     }
 
     @Override
@@ -25,8 +29,9 @@ public class InvoiceRegistration extends Expense
         if (!getId().equals(that.getId())) return false;
         if (!getDate().equals(that.getDate())) return false;
         if (!getSupplier().equals(that.getSupplier())) return false;
+        if (!getNumber().equals(that.getNumber())) return false;
         if (!getCategory().equals(that.getCategory())) return false;
         if (!getValue().equals(that.getValue())) return false;
-        return (!getStatus().equals(that.getStatus()));
+        return (getStatus().equals(that.getStatus()));
     }
 }
