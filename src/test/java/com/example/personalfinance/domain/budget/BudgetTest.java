@@ -1,4 +1,4 @@
-package com.example.personalfinance.domain.budgetplanning;
+package com.example.personalfinance.domain.budget;
 
 import com.example.personalfinance.domain.valueobjects.BudgetCategory;
 import com.example.personalfinance.domain.valueobjects.BudgetId;

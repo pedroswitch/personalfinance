@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 public class InvestmentId implements DomainId
 {
-    private long id;
+    public final long id;
 }
+
