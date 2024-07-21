@@ -8,6 +8,7 @@ import lombok.Data;
 public abstract class Expense implements AggregateRoot<ExpenseId>
 {
     private final ExpenseId id;
+    private final ExpenseType type;
     private final ExpenseSupplier supplier;
     private final ExpenseCategory category;
     private final Values value;
