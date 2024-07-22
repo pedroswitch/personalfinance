@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PaymentTest
 {
     ExpenseId id;
+    ExpenseType type;
     Date date;
     ExpenseSupplier supplier;
     InvoiceNumber number;
@@ -22,6 +23,7 @@ public class PaymentTest
     void setup()
     {
         id = new ExpenseId(1L);
+        type = new ExpenseType("Payment");
         date = new Date(LocalDate.of(2024, 7, 10));
         supplier = new ExpenseSupplier("Zara");
         number = new InvoiceNumber("1234");
@@ -34,7 +36,7 @@ public class PaymentTest
     void invoiceRegistration()
     {
         // Act
-        Payment payment = new Payment(id, supplier, category, value, date, number, paymentDate);
+        Payment payment = new Payment(id, type, supplier, category, value, date, number, paymentDate);
 
         // Assert
         assertNotNull(payment);
@@ -45,14 +47,15 @@ public class PaymentTest
     {
         // Arrange
         ExpenseId id2 = new ExpenseId(1L);
+        ExpenseType type2 = new ExpenseType("Payment");
         Date date2 = new Date(LocalDate.of(2024, 7, 10));
         ExpenseSupplier supplier2 = new ExpenseSupplier("Zara");
         InvoiceNumber number2 = new InvoiceNumber("1234");
         ExpenseCategory category2 = new ExpenseCategory("Clothes");
         Values value2 = new Values(39.99);
         Date paymentDate2 = new Date(LocalDate.of(2024, 8, 10));
-        Payment payment2 = new Payment(id2, supplier2, category2, value2, date2, number2, paymentDate2);
-        Payment payment = new Payment(id, supplier, category, value, date, number, paymentDate);
+        Payment payment2 = new Payment(id2, type2, supplier2, category2, value2, date2, number2, paymentDate2);
+        Payment payment = new Payment(id, type, supplier, category, value, date, number, paymentDate);
 
         // Act
         boolean result = payment.sameAs(payment2);
@@ -66,14 +69,15 @@ public class PaymentTest
     {
         // Arrange
         ExpenseId id2 = new ExpenseId(1L);
+        ExpenseType type2 = new ExpenseType("Payment");
         Date date2 = new Date(LocalDate.of(2024, 7, 10));
         ExpenseSupplier supplier2 = new ExpenseSupplier("Zara");
         InvoiceNumber number2 = new InvoiceNumber("4321");
         ExpenseCategory category2 = new ExpenseCategory("Clothes");
         Values value2 = new Values(39.99);
         Date paymentDate2 = new Date(LocalDate.of(2024, 8, 10));
-        Payment payment2 = new Payment(id2, supplier2, category2, value2, date2, number2, paymentDate2);
-        Payment payment = new Payment(id, supplier, category, value, date, number, paymentDate);
+        Payment payment2 = new Payment(id2, type2, supplier2, category2, value2, date2, number2, paymentDate2);
+        Payment payment = new Payment(id, type, supplier, category, value, date, number, paymentDate);
 
         // Act
         boolean result = payment.sameAs(payment2);

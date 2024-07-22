@@ -12,9 +12,9 @@ public class Payment extends Expense
     private final InvoiceNumber number;
     private final Date paymentDate;
 
-    public Payment(ExpenseId id, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date date, InvoiceNumber number, Date paymentDate)
+    public Payment(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date date, InvoiceNumber number, Date paymentDate)
     {
-        super(id, supplier, category, value);
+        super(id, type, supplier, category, value);
         this.date = date;
         this.number = number;
         this.paymentDate = paymentDate;
