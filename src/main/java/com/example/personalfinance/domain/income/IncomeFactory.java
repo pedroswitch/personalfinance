@@ -1,9 +1,6 @@
 package com.example.personalfinance.domain.income;
 
-import com.example.personalfinance.domain.valueobjects.Date;
-import com.example.personalfinance.domain.valueobjects.IncomeId;
-import com.example.personalfinance.domain.valueobjects.IncomeType;
-import com.example.personalfinance.domain.valueobjects.Values;
+import com.example.personalfinance.domain.valueobjects.*;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,6 +25,38 @@ public class IncomeFactory
                  NoSuchMethodException | NullPointerException |
                 InvocationTargetException | IllegalArgumentException |
                 IllegalAccessException e) {
+            return null;
+        }
+    }
+
+    public Income createIncome(IncomeId id, IncomeType type, Date date, Values value, EmployerName name)
+    {
+        try {
+            String fullPath = PATH + type.getType();
+
+            return (Income) Class.forName(fullPath)
+                    .getConstructor(IncomeId.class, IncomeType.class, Date.class, Values.class, EmployerName.class)
+                    .newInstance(id, type, date, value, name);
+        } catch (ClassNotFoundException | InstantiationException |
+                 NoSuchMethodException | NullPointerException |
+                 InvocationTargetException | IllegalArgumentException |
+                 IllegalAccessException e) {
+            return null;
+        }
+    }
+
+    public Income createIncome(IncomeId id, IncomeType type, Date date, Values value, SideGigName name)
+    {
+        try {
+            String fullPath = PATH + type.getType();
+
+            return (Income) Class.forName(fullPath)
+                    .getConstructor(IncomeId.class, IncomeType.class, Date.class, Values.class, SideGigName.class)
+                    .newInstance(id, type, date, value, name);
+        } catch (ClassNotFoundException | InstantiationException |
+                 NoSuchMethodException | NullPointerException |
+                 InvocationTargetException | IllegalArgumentException |
+                 IllegalAccessException e) {
             return null;
         }
     }
