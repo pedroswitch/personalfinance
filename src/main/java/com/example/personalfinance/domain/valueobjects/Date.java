@@ -9,5 +9,5 @@ import java.time.LocalDate;
 @Data
 public class Date extends ValueObject
 {
-    private final LocalDate d;
+    private final LocalDate date;
 }
