@@ -1,9 +1,10 @@
-package com.example.personalfinance.persistence;
+package com.example.personalfinance.persistence.springdata;
 
 import com.example.personalfinance.domain.budget.Budget;
 import com.example.personalfinance.domain.repository.BudgetRepo;
 import com.example.personalfinance.domain.valueobjects.BudgetId;
 import com.example.personalfinance.mapper.BudgetMapper;
+import com.example.personalfinance.persistence.BudgetDataModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
