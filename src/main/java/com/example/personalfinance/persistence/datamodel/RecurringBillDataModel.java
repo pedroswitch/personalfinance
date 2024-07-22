@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Entity
 @DiscriminatorValue("recurring_bill")
 @Getter
-public class RecurringBillDataModel extends com.example.personalfinance.persistence.ExpenseDataModel
+public class RecurringBillDataModel extends com.example.personalfinance.persistence.datamodel.ExpenseDataModel
 {
     @Column(name = "initial_date")
     private LocalDate initialDate;

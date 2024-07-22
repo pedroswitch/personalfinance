@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Entity
 @DiscriminatorValue("payment")
 @Getter
-public class PaymentDataModel extends com.example.personalfinance.persistence.ExpenseDataModel
+public class PaymentDataModel extends com.example.personalfinance.persistence.datamodel.ExpenseDataModel
 {
     @Column(name = "invoice_date")
     private LocalDate invoiceDate;

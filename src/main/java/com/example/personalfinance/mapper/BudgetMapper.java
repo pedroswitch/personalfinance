@@ -5,7 +5,7 @@ import com.example.personalfinance.domain.budget.BudgetFactory;
 import com.example.personalfinance.domain.valueobjects.BudgetCategory;
 import com.example.personalfinance.domain.valueobjects.BudgetId;
 import com.example.personalfinance.domain.valueobjects.Values;
-import com.example.personalfinance.persistence.BudgetDataModel;
+import com.example.personalfinance.persistence.datamodel.BudgetDataModel;
 
 import java.util.ArrayList;
 import java.util.List;

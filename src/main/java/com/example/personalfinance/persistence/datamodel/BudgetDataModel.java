@@ -1,4 +1,4 @@
-package com.example.personalfinance.persistence;
+package com.example.personalfinance.persistence.datamodel;
 
 import com.example.personalfinance.domain.budget.Budget;
 import jakarta.persistence.*;
@@ -18,6 +18,8 @@ public class BudgetDataModel
     private int version;
 
     private String category;
+
+    @Column(name = "amount")
     private double value;
 
     public BudgetDataModel()

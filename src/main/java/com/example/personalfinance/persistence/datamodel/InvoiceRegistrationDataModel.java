@@ -1,4 +1,4 @@
-package com.example.personalfinance.persistence;
+package com.example.personalfinance.persistence.datamodel;
 
 import com.example.personalfinance.domain.expense.Expense;
 import jakarta.persistence.Column;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Entity
 @DiscriminatorValue("invoice_registration")
 @Getter
-public class InvoiceRegistrationDataModel extends com.example.personalfinance.persistence.ExpenseDataModel
+public class InvoiceRegistrationDataModel extends com.example.personalfinance.persistence.datamodel.ExpenseDataModel
 {
     @Column(name = "number")
     private int number;
