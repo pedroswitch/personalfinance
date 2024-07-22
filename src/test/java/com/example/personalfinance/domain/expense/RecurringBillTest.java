@@ -12,6 +12,7 @@ public class RecurringBillTest
 {
 
     ExpenseId id;
+    ExpenseType type;
     ExpenseSupplier supplier;
     ExpenseCategory category;
     Values value;
@@ -22,6 +23,7 @@ public class RecurringBillTest
     void setuo()
     {
         id = new ExpenseId(2L);
+        type = new ExpenseType("RecurringBill");
         supplier = new ExpenseSupplier("Vodafone");
         category = new ExpenseCategory("Communications");
         value = new Values(29.99);
@@ -33,7 +35,7 @@ public class RecurringBillTest
     void recurringBill()
     {
         // Act
-        RecurringBill recurringBill = new RecurringBill(id, supplier, category, value, initialDate, finalDate);
+        RecurringBill recurringBill = new RecurringBill(id, type, supplier, category, value, initialDate, finalDate);
 
         // Assert
         assertNotNull(recurringBill);
@@ -44,13 +46,14 @@ public class RecurringBillTest
     {
         // Arrange
         ExpenseId id2 = new ExpenseId(2L);
+        ExpenseType type2 = new ExpenseType("RecurringBill");
         ExpenseSupplier supplier2 = new ExpenseSupplier("Vodafone");
         ExpenseCategory category2 = new ExpenseCategory("Communications");
         Values value2 = new Values(29.99);
         Date initialDate2 = new Date(LocalDate.of(2024, 7, 10));
         Date finalDate2 = new Date(LocalDate.of(2025, 6, 10));
-        RecurringBill recurringBill2 = new RecurringBill(id2, supplier2, category2, value2, initialDate2, finalDate2);
-        RecurringBill recurringBill = new RecurringBill(id, supplier, category, value, initialDate, finalDate);
+        RecurringBill recurringBill2 = new RecurringBill(id2, type2, supplier2, category2, value2, initialDate2, finalDate2);
+        RecurringBill recurringBill = new RecurringBill(id, type, supplier, category, value, initialDate, finalDate);
 
         // Act
         boolean result = recurringBill.sameAs(recurringBill2);
@@ -64,13 +67,14 @@ public class RecurringBillTest
     {
         // Arrange
         ExpenseId id2 = new ExpenseId(3L);
+        ExpenseType type2 = new ExpenseType("RecurringBill");
         ExpenseSupplier supplier2 = new ExpenseSupplier("Vodafone");
         ExpenseCategory category2 = new ExpenseCategory("Communications");
         Values value2 = new Values(29.99);
         Date initialDate2 = new Date(LocalDate.of(2024, 7, 10));
         Date finalDate2 = new Date(LocalDate.of(2025, 6, 10));
-        RecurringBill recurringBill2 = new RecurringBill(id2, supplier2, category2, value2, initialDate2, finalDate2);
-        RecurringBill recurringBill = new RecurringBill(id, supplier, category, value, initialDate, finalDate);
+        RecurringBill recurringBill2 = new RecurringBill(id2, type2, supplier2, category2, value2, initialDate2, finalDate2);
+        RecurringBill recurringBill = new RecurringBill(id, type, supplier, category, value, initialDate, finalDate);
 
         // Act
         boolean result = recurringBill.sameAs(recurringBill2);

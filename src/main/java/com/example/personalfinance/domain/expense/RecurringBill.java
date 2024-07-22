@@ -11,9 +11,9 @@ public class RecurringBill extends Expense
     private final Date initialDate;
     private final Date finalDate;
 
-    public RecurringBill(ExpenseId id, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date initialDate, Date finalDate)
+    public RecurringBill(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date initialDate, Date finalDate)
     {
-        super(id, supplier, category, value);
+        super(id, type, supplier, category, value);
         this.initialDate = initialDate;
         this.finalDate = finalDate;
     }
