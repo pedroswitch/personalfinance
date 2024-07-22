@@ -8,6 +8,9 @@ import com.example.personalfinance.persistence.datamodel.InvoiceRegistrationData
 import com.example.personalfinance.persistence.datamodel.PaymentDataModel;
 import com.example.personalfinance.persistence.datamodel.RecurringBillDataModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.personalfinance.utils.Constants.*;
 
 public class ExpenseMapper
@@ -45,5 +48,14 @@ public class ExpenseMapper
         }
 
         return expenseFactory.createExpense(id, type, supplier, category, value);
+    }
+
+    public static Iterable<Expense> expensesDataModelToDomain(Iterable<ExpenseDataModel> expenseDataModels)
+    {
+        List<Expense> expenses = new ArrayList();
+        expenseDataModels.forEach(
+                dataModel -> expenses.add(expenseDataModelToDomain(dataModel))
+        );
+        return expenses;
     }
 }
