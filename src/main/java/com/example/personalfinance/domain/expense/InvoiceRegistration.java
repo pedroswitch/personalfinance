@@ -12,9 +12,9 @@ public class InvoiceRegistration extends Expense
     private final InvoiceNumber number;
     private final ExpenseStatus status;
 
-    public InvoiceRegistration(ExpenseId id, Date date, ExpenseSupplier supplier, InvoiceNumber number, ExpenseCategory category, Values value, ExpenseStatus status)
+    public InvoiceRegistration(ExpenseId id, ExpenseType type, Date date, ExpenseSupplier supplier, InvoiceNumber number, ExpenseCategory category, Values value, ExpenseStatus status)
     {
-        super(id, supplier, category, value);
+        super(id, type, supplier, category, value);
         this.number = number;
         this.date = date;
         this.status = status;
