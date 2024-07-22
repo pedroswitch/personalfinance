@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SalaryTest
 {
     IncomeId id;
+    IncomeType type;
     Date date;
     EmployerName name;
     Values value;
@@ -19,6 +20,7 @@ public class SalaryTest
     void setuo()
     {
         id = new IncomeId(1L);
+        type = new IncomeType("Salary");
         date = new Date(LocalDate.of(2024, 7, 10));
         name = new EmployerName("Isep");
         value = new Values(1500.00);
@@ -28,7 +30,7 @@ public class SalaryTest
     void salary()
     {
         // Act
-        Salary salary = new Salary(id, date, value, name);
+        Salary salary = new Salary(id, type, date, value, name);
 
         // Assert
         assertNotNull(salary);
@@ -39,11 +41,12 @@ public class SalaryTest
     {
         // Arrange
         IncomeId id2 = new IncomeId(1L);
+        IncomeType type2 = new IncomeType("Salary");
         Date date2 = new Date(LocalDate.of(2024, 7, 10));
         EmployerName name2 = new EmployerName("Isep");
         Values value2 = new Values(1500.00);
-        Salary salary2 = new Salary(id2, date2, value2, name2);
-        Salary salary = new Salary(id, date, value, name);
+        Salary salary2 = new Salary(id2, type2, date2, value2, name2);
+        Salary salary = new Salary(id, type, date, value, name);
 
         // Act
         boolean result = salary.sameAs(salary2);
@@ -57,11 +60,12 @@ public class SalaryTest
     {
         // Arrange
         IncomeId id2 = new IncomeId(2L);
+        IncomeType type2 = new IncomeType("Salary");
         Date date2 = new Date(LocalDate.of(2024, 7, 10));
         EmployerName name2 = new EmployerName("Isep");
         Values value2 = new Values(1500.00);
-        Salary salary2 = new Salary(id2, date2, value2, name2);
-        Salary salary = new Salary(id, date, value, name);
+        Salary salary2 = new Salary(id2, type2, date2, value2, name2);
+        Salary salary = new Salary(id, type, date, value, name);
 
         // Act
         boolean result = salary.sameAs(salary2);

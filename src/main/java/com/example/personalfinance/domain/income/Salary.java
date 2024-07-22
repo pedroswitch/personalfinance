@@ -10,9 +10,9 @@ public class Salary extends Income
 {
     private final EmployerName name;
 
-    public Salary(IncomeId id, Date date, Values value, EmployerName name)
+    public Salary(IncomeId id, IncomeType type, Date date, Values value, EmployerName name)
     {
-        super(id, date, value);
+        super(id, type, date, value);
         this.name = name;
     }
 
