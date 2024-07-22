@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class InvoiceRegistrationDataModel extends com.example.personalfinance.persistence.datamodel.ExpenseDataModel
 {
     @Column(name = "number")
-    private int number;
+    private String number;
 
     @Column(name = "date")
     private LocalDate date;
@@ -26,7 +26,7 @@ public class InvoiceRegistrationDataModel extends com.example.personalfinance.pe
     {
     }
 
-    public InvoiceRegistrationDataModel(Expense expense, int number, LocalDate date, boolean status)
+    public InvoiceRegistrationDataModel(Expense expense, String number, LocalDate date, boolean status)
     {
         super(expense);
         this.number = number;

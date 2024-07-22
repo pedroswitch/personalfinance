@@ -17,7 +17,7 @@ public class PaymentDataModel extends com.example.personalfinance.persistence.da
     private LocalDate invoiceDate;
 
     @Column(name = "invoice_number")
-    private int invoiceNumber;
+    private String invoiceNumber;
 
     @Column(name = "payment_date")
     private LocalDate paymentDate;
@@ -26,7 +26,7 @@ public class PaymentDataModel extends com.example.personalfinance.persistence.da
     {
     }
 
-    public PaymentDataModel(Expense expense, LocalDate invoiceDate, int invoiceNumber, LocalDate paymentDate)
+    public PaymentDataModel(Expense expense, LocalDate invoiceDate, String invoiceNumber, LocalDate paymentDate)
     {
         super(expense);
         this.invoiceDate = invoiceDate;

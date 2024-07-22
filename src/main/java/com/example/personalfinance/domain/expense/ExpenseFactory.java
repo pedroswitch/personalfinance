@@ -28,6 +28,54 @@ public class ExpenseFactory
         }
     }
 
+    public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, InvoiceNumber number, Date date, ExpenseStatus status)
+    {
+        try {
+            String fullPath = PATH + type.getType();
+
+            return (Expense) Class.forName(fullPath)
+                    .getConstructor(ExpenseId.class, ExpenseType.class, ExpenseSupplier.class, ExpenseCategory.class, Values.class, InvoiceNumber.class, Date.class, ExpenseStatus.class)
+                    .newInstance(id, type, supplier, category, value, number, date, status);
+        } catch (ClassNotFoundException | InstantiationException |
+                 NoSuchMethodException | NullPointerException |
+                 InvocationTargetException | IllegalArgumentException |
+                 IllegalAccessException e) {
+            return null;
+        }
+    }
+
+    public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date date, InvoiceNumber number, Date paymentDate)
+    {
+        try {
+            String fullPath = PATH + type.getType();
+
+            return (Expense) Class.forName(fullPath)
+                    .getConstructor(ExpenseId.class, ExpenseType.class, ExpenseSupplier.class, ExpenseCategory.class, Values.class, Date.class, InvoiceNumber.class, Date.class)
+                    .newInstance(id, type, supplier, category, value, date, number, paymentDate);
+        } catch (ClassNotFoundException | InstantiationException |
+                 NoSuchMethodException | NullPointerException |
+                 InvocationTargetException | IllegalArgumentException |
+                 IllegalAccessException e) {
+            return null;
+        }
+    }
+
+    public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date initialDate, Date finalDate)
+    {
+        try {
+            String fullPath = PATH + type.getType();
+
+            return (Expense) Class.forName(fullPath)
+                    .getConstructor(ExpenseId.class, ExpenseType.class, ExpenseSupplier.class, ExpenseCategory.class, Values.class, Date.class, Date.class)
+                    .newInstance(id, type, supplier, category, value, initialDate, finalDate);
+        } catch (ClassNotFoundException | InstantiationException |
+                 NoSuchMethodException | NullPointerException |
+                 InvocationTargetException | IllegalArgumentException |
+                 IllegalAccessException e) {
+            return null;
+        }
+    }
+
     public Optional<ExpenseId> createExpenseId(long id)
     {
         try {
