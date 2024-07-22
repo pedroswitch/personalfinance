@@ -11,9 +11,9 @@ public class SideGig extends Income
 
     private final SideGigName name;
 
-    public SideGig(IncomeId id, Date date, Values value, SideGigName name)
+    public SideGig(IncomeId id, IncomeType type, Date date, Values value, SideGigName name)
     {
-        super(id, date, value);
+        super(id, type, date, value);
         this.name = name;
     }
 
