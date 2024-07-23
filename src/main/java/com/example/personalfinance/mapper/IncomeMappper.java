@@ -7,12 +7,15 @@ import com.example.personalfinance.persistence.datamodel.IncomeDataModel;
 import com.example.personalfinance.persistence.datamodel.SalaryDataModel;
 import com.example.personalfinance.persistence.datamodel.SideGigDataModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.personalfinance.utils.Constants.SALARY;
 import static com.example.personalfinance.utils.Constants.SIDE_GIG;
 
 public class IncomeMappper
 {
-    public static Income incomeDataModel(IncomeDataModel incomeDataModel)
+    public static Income incomeDataModelToDomain(IncomeDataModel incomeDataModel)
     {
         IncomeFactory incomeFactory = new IncomeFactory();
         IncomeId id = new IncomeId(incomeDataModel.getId());
@@ -33,5 +36,14 @@ public class IncomeMappper
         }
 
         return incomeFactory.createIncome(id, type, date, value);
+    }
+
+    public static Iterable<Income> incomesDataModelToDomain(Iterable<IncomeDataModel> incomeDataModel)
+    {
+        List<Income> incomes = new ArrayList<>();
+        incomeDataModel.forEach(
+                dataModel -> incomes.add(incomeDataModelToDomain(dataModel))
+        );
+        return incomes;
     }
 }
