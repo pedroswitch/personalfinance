@@ -13,32 +13,32 @@ import java.util.Optional;
 public class BudgetRepoSpringData implements BudgetRepo
 {
 
-    private final BudgetRepoSpringDataInterface _budgetInterface;
+    private final BudgetRepoSpringDataInterface budgetInterface;
 
     public BudgetRepoSpringData(BudgetRepoSpringDataInterface budgetInterface)
     {
-        this._budgetInterface = budgetInterface;
+        this.budgetInterface = budgetInterface;
     }
 
     @Override
     public Budget save(Budget budget)
     {
         BudgetDataModel budgetDataModel = new BudgetDataModel(budget);
-        BudgetDataModel result = _budgetInterface.save(budgetDataModel);
+        BudgetDataModel result = budgetInterface.save(budgetDataModel);
         return BudgetMapper.budgetDataModelToDomain(result);
     }
 
     @Override
     public Iterable<Budget> findAll()
     {
-        Iterable<BudgetDataModel> budgets = _budgetInterface.findAll();
+        Iterable<BudgetDataModel> budgets = this.budgetInterface.findAll();
         return BudgetMapper.budgetsDataModelToDomain(budgets);
     }
 
     @Override
     public Optional<Budget> findById(BudgetId id)
     {
-        Optional<BudgetDataModel> model = this._budgetInterface.findById(id.id);
+        Optional<BudgetDataModel> model = this.budgetInterface.findById(id.id);
 
         if (model.isPresent()) {
             return Optional.of(BudgetMapper.budgetDataModelToDomain(model.get()));
@@ -49,6 +49,22 @@ public class BudgetRepoSpringData implements BudgetRepo
     @Override
     public boolean existsById(BudgetId id)
     {
-        return this._budgetInterface.existsById(id.id);
+        return this.budgetInterface.existsById(id.id);
     }
+
+    public Iterable<Budget> findAllByCategory(String category)
+    {
+        Iterable<BudgetDataModel> budgets = this.budgetInterface.findAllByCategory(category);
+
+        return BudgetMapper.budgetsDataModelToDomain(budgets);
+    }
+
+    public boolean delete(long id) {
+        if (this.budgetInterface.existsById(id)) {
+            this.budgetInterface.deleteById(id);
+            return !this.budgetInterface.existsById(id);
+        }
+        return false;
+    }
+
 }

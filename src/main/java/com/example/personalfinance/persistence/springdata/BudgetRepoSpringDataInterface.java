@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BudgetRepoSpringDataInterface extends JpaRepository<BudgetDataModel, Long>
 {
+    Iterable<BudgetDataModel> findAllByCategory(String category);
 }
