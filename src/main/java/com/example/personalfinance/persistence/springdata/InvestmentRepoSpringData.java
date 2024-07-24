@@ -10,32 +10,32 @@ import java.util.Optional;
 
 public class InvestmentRepoSpringData implements InvestmentRepo
 {
-    private final InvestmentRepoSpringDataInterface _investmentInterface;
+    private final InvestmentRepoSpringDataInterface investmentInterface;
 
     public InvestmentRepoSpringData(InvestmentRepoSpringDataInterface investmentInterface)
     {
-        this._investmentInterface = investmentInterface;
+        this.investmentInterface = investmentInterface;
     }
 
     @Override
     public Investment save(Investment investment)
     {
         InvestmentDataModel investmentDataModel = new InvestmentDataModel(investment);
-        InvestmentDataModel result = _investmentInterface.save(investmentDataModel);
+        InvestmentDataModel result = investmentInterface.save(investmentDataModel);
         return InvestmentMapper.investmentDataModelToDomain(result);
     }
 
     @Override
     public Iterable<Investment> findAll()
     {
-        Iterable<InvestmentDataModel> investments = _investmentInterface.findAll();
+        Iterable<InvestmentDataModel> investments = investmentInterface.findAll();
         return InvestmentMapper.investmentsDataModelToDomain(investments);
     }
 
     @Override
     public Optional<Investment> findById(InvestmentId id)
     {
-        Optional<InvestmentDataModel> model = this._investmentInterface.findById(id.id);
+        Optional<InvestmentDataModel> model = this.investmentInterface.findById(id.id);
 
         if (model.isPresent()) {
             return Optional.of(InvestmentMapper.investmentDataModelToDomain(model.get()));
@@ -46,6 +46,23 @@ public class InvestmentRepoSpringData implements InvestmentRepo
     @Override
     public boolean existsById(InvestmentId id)
     {
-        return this._investmentInterface.existsById(id.id);
+        return this.investmentInterface.existsById(id.id);
+    }
+
+    @Override
+    public Iterable<Investment> findAllByCategory(String category)
+    {
+        Iterable<InvestmentDataModel> investments = this.investmentInterface.findAllByCategory(category);
+        return InvestmentMapper.investmentsDataModelToDomain(investments);
+    }
+
+    @Override
+    public boolean delete(long id)
+    {
+        if (this.investmentInterface.existsById(id)) {
+            this.investmentInterface.deleteById(id);
+            return !this.investmentInterface.existsById(id);
+        }
+        return false;
     }
 }

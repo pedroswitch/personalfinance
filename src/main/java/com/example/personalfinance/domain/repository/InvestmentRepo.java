@@ -6,4 +6,6 @@ import com.example.personalfinance.domain.valueobjects.InvestmentId;
 
 public interface InvestmentRepo extends Repository<InvestmentId, Investment>
 {
+    Iterable<Investment> findAllByCategory(String category);
+    boolean delete(long id);
 }
