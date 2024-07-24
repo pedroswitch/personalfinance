@@ -5,5 +5,5 @@ import com.example.personalfinance.domain.investment.Investment;
 import java.util.List;
 
 public interface InvestmentOperations <T extends Investment> extends Operations<T> {
-    Iterable<T> findByCategory(String category);
+    Iterable<T> findAllByCategory(String category);
 }
