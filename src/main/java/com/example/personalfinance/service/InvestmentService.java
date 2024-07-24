@@ -3,31 +3,28 @@ package com.example.personalfinance.service;
 import com.example.personalfinance.domain.investment.Investment;
 
 import java.util.List;
-import java.util.Optional;
 
 public class InvestmentService implements InvestmentOperations<Investment>
 {
+    public Investment add(Investment item)
+    {
+        return null;
+    }
 
     @Override
-    public List<Investment> findByCategory(String category)
+    public Iterable<Investment> findByCategory(String category)
     {
         return List.of();
     }
 
     @Override
-    public Optional<Investment> add(Investment item)
-    {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean delete(String id)
+    public boolean delete(long id)
     {
         return false;
     }
 
     @Override
-    public List<Investment> findAll()
+    public Iterable<Investment> findAll()
     {
         return List.of();
     }

@@ -3,31 +3,28 @@ package com.example.personalfinance.service;
 import com.example.personalfinance.domain.expense.InvoiceRegistration;
 
 import java.util.List;
-import java.util.Optional;
 
 public class InvoiceRegistrationService implements ExpenseOperations<InvoiceRegistration>
 {
+    public InvoiceRegistration add(InvoiceRegistration item)
+    {
+        return null;
+    }
 
     @Override
-    public List<InvoiceRegistration> findBySupplier(String supplier)
+    public Iterable<InvoiceRegistration> findBySupplier(String supplier)
     {
         return List.of();
     }
 
     @Override
-    public Optional<InvoiceRegistration> add(InvoiceRegistration item)
-    {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean delete(String id)
+    public boolean delete(long id)
     {
         return false;
     }
 
     @Override
-    public List<InvoiceRegistration> findAll()
+    public Iterable<InvoiceRegistration> findAll()
     {
         return List.of();
     }

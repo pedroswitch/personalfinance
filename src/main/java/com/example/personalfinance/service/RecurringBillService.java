@@ -7,27 +7,25 @@ import java.util.Optional;
 
 public class RecurringBillService implements ExpenseOperations<RecurringBill>
 {
+    public RecurringBill add(RecurringBill item)
+    {
+        return null;
+    }
 
     @Override
-    public List<RecurringBill> findBySupplier(String supplier)
+    public Iterable<RecurringBill> findBySupplier(String supplier)
     {
         return List.of();
     }
 
     @Override
-    public Optional<RecurringBill> add(RecurringBill item)
-    {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean delete(String id)
+    public boolean delete(long id)
     {
         return false;
     }
 
     @Override
-    public List<RecurringBill> findAll()
+    public Iterable<RecurringBill> findAll()
     {
         return List.of();
     }

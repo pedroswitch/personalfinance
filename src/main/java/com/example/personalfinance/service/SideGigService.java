@@ -3,31 +3,28 @@ package com.example.personalfinance.service;
 import com.example.personalfinance.domain.income.SideGig;
 
 import java.util.List;
-import java.util.Optional;
 
 public class SideGigService implements IncomeOperations<SideGig>
 {
+    public SideGig add(SideGig item)
+    {
+        return null;
+    }
 
     @Override
-    public List<SideGig> findByName(String name)
+    public Iterable<SideGig> findByName(String name)
     {
         return List.of();
     }
 
     @Override
-    public Optional<SideGig> add(SideGig item)
-    {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean delete(String id)
+    public boolean delete(long id)
     {
         return false;
     }
 
     @Override
-    public List<SideGig> findAll()
+    public Iterable<SideGig> findAll()
     {
         return List.of();
     }
