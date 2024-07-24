@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ExpenseOperations<T extends Expense> extends Operations<T>
 {
-    List<T> findBySupplier(String supplier);
+    Iterable<T> findBySupplier(String supplier);
 }

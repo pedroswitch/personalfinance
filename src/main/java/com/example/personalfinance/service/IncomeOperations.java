@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IncomeOperations<T extends Income> extends Operations<T>
 {
-    List<T> findByName(String name);
+    Iterable<T> findByName(String name);
 }
