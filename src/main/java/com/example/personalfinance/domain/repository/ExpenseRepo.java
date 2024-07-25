@@ -6,4 +6,6 @@ import com.example.personalfinance.domain.valueobjects.ExpenseId;
 
 public interface ExpenseRepo extends Repository<ExpenseId, Expense>
 {
+    Iterable<Expense> findBySupplier(String supplier);
+    boolean delete(long id);
 }

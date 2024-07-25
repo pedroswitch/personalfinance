@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExpenseRepoSringDataInterface extends JpaRepository<ExpenseDataModel, Long>
 {
+    Iterable<ExpenseDataModel> findBySupplier(String supplier);
 }

@@ -20,11 +20,11 @@ import static com.example.personalfinance.utils.Constants.*;
 @Repository
 public class ExpenseRepoSpringData implements ExpenseRepo
 {
-    private final ExpenseRepoSringDataInterface _expenseInterface;
+    private final ExpenseRepoSringDataInterface expenseInterface;
 
     public ExpenseRepoSpringData(ExpenseRepoSringDataInterface expenseInterface)
     {
-        this._expenseInterface = expenseInterface;
+        this.expenseInterface = expenseInterface;
     }
 
     @Override
@@ -39,21 +39,21 @@ public class ExpenseRepoSpringData implements ExpenseRepo
         } else {
             expenseDataModel = new ExpenseDataModel(expense);
         }
-        ExpenseDataModel result = _expenseInterface.save(expenseDataModel);
+        ExpenseDataModel result = expenseInterface.save(expenseDataModel);
         return ExpenseMapper.expenseDataModelToDomain(result);
     }
 
     @Override
     public Iterable<Expense> findAll()
     {
-        Iterable<ExpenseDataModel> expenses = _expenseInterface.findAll();
+        Iterable<ExpenseDataModel> expenses = expenseInterface.findAll();
         return ExpenseMapper.expensesDataModelToDomain(expenses);
     }
 
     @Override
     public Optional<Expense> findById(ExpenseId id)
     {
-        Optional<ExpenseDataModel> model = this._expenseInterface.findById(id.id);
+        Optional<ExpenseDataModel> model = this.expenseInterface.findById(id.id);
         if (model.isPresent()) {
             return Optional.of(ExpenseMapper.expenseDataModelToDomain(model.get()));
         }
@@ -63,6 +63,23 @@ public class ExpenseRepoSpringData implements ExpenseRepo
     @Override
     public boolean existsById(ExpenseId id)
     {
-        return this._expenseInterface.existsById(id.id);
+        return this.expenseInterface.existsById(id.id);
+    }
+
+    @Override
+    public Iterable<Expense> findBySupplier(String supplier)
+    {
+        Iterable<ExpenseDataModel> records = this.expenseInterface.findBySupplier(supplier);
+        return ExpenseMapper.expensesDataModelToDomain(records);
+    }
+
+    @Override
+    public boolean delete(long id)
+    {
+        if (this.expenseInterface.existsById(id)) {
+            this.expenseInterface.deleteById(id);
+            return !this.expenseInterface.existsById(id);
+        }
+        return false;
     }
 }
