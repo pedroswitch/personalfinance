@@ -62,10 +62,11 @@ public class BudgetServiceTest {
     {
         // Arrange
         String categoryString = "House";
+        BudgetId id = new BudgetId(1);
         BudgetCategory category = new BudgetCategory(categoryString);
-        Budget budget1 = mock(Budget.class);
-        Budget budget2 = mock(Budget.class);
-        List<Budget> expectedBudgets = Arrays.asList(budget1, budget2);
+        Values value = new Values(1000.00);
+        Budget budget1 = new Budget(id, category, value);
+        List<Budget> expectedBudgets = Arrays.asList(budget1);
         when(budgetFactory.createBudgetCategory(categoryString)).thenReturn(Optional.of(category));
         when(budgetRepo.findByCategory(categoryString)).thenReturn(expectedBudgets);
 
@@ -121,8 +122,14 @@ public class BudgetServiceTest {
     void shouldFindAll()
     {
         // Arrange
-        Budget budget1 = mock(Budget.class);
-        Budget budget2 = mock(Budget.class);
+        BudgetId id1 = new BudgetId(1);
+        BudgetCategory category1 = new BudgetCategory("House");
+        Values value1 = new Values(1000.00);
+        BudgetId id2 = new BudgetId(2);
+        BudgetCategory category2 = new BudgetCategory("Car");
+        Values value2 = new Values(500.00);
+        Budget budget1 = new Budget(id1, category1, value1);
+        Budget budget2 = new Budget(id2, category2, value2);
         List<Budget> expectedBudgets = Arrays.asList(budget1, budget2);
         when(budgetRepo.findAll()).thenReturn(expectedBudgets);
 
