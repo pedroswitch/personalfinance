@@ -52,9 +52,9 @@ public class BudgetRepoSpringData implements BudgetRepo
         return this.budgetInterface.existsById(id.id);
     }
 
-    public Iterable<Budget> findAllByCategory(String category)
+    public Iterable<Budget> findByCategory(String category)
     {
-        Iterable<BudgetDataModel> budgets = this.budgetInterface.findAllByCategory(category);
+        Iterable<BudgetDataModel> budgets = this.budgetInterface.findByCategory(category);
 
         return BudgetMapper.budgetsDataModelToDomain(budgets);
     }

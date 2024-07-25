@@ -6,6 +6,6 @@ import com.example.personalfinance.domain.valueobjects.BudgetId;
 
 public interface BudgetRepo extends Repository<BudgetId, Budget>
 {
-    Iterable<Budget> findAllByCategory(String category);
+    Iterable<Budget> findByCategory(String category);
     boolean delete(long id);
 }

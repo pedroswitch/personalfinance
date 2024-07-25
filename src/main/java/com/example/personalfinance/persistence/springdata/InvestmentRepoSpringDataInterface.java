@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InvestmentRepoSpringDataInterface extends JpaRepository<InvestmentDataModel, Long>
 {
-    Iterable<InvestmentDataModel> findAllByCategory(String category);
+    Iterable<InvestmentDataModel> findByCategory(String category);
 }

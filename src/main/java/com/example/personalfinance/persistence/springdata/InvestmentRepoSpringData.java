@@ -35,7 +35,7 @@ public class InvestmentRepoSpringData implements InvestmentRepo
     @Override
     public Optional<Investment> findById(InvestmentId id)
     {
-        Optional<InvestmentDataModel> model = this.investmentInterface.findById(id.id);
+        Optional<InvestmentDataModel> model = investmentInterface.findById(id.id);
 
         if (model.isPresent()) {
             return Optional.of(InvestmentMapper.investmentDataModelToDomain(model.get()));
@@ -46,22 +46,22 @@ public class InvestmentRepoSpringData implements InvestmentRepo
     @Override
     public boolean existsById(InvestmentId id)
     {
-        return this.investmentInterface.existsById(id.id);
+        return investmentInterface.existsById(id.id);
     }
 
     @Override
-    public Iterable<Investment> findAllByCategory(String category)
+    public Iterable<Investment> findByCategory(String category)
     {
-        Iterable<InvestmentDataModel> investments = this.investmentInterface.findAllByCategory(category);
+        Iterable<InvestmentDataModel> investments = investmentInterface.findByCategory(category);
         return InvestmentMapper.investmentsDataModelToDomain(investments);
     }
 
     @Override
     public boolean delete(long id)
     {
-        if (this.investmentInterface.existsById(id)) {
-            this.investmentInterface.deleteById(id);
-            return !this.investmentInterface.existsById(id);
+        if (investmentInterface.existsById(id)) {
+            investmentInterface.deleteById(id);
+            return !investmentInterface.existsById(id);
         }
         return false;
     }
