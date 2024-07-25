@@ -2,10 +2,8 @@ package com.example.personalfinance.service;
 
 import com.example.personalfinance.domain.investment.Investment;
 import com.example.personalfinance.domain.investment.InvestmentFactory;
-import com.example.personalfinance.domain.investment.InvestmentTest;
 import com.example.personalfinance.domain.repository.InvestmentRepo;
 import com.example.personalfinance.domain.valueobjects.*;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -70,7 +68,7 @@ public class InvestmentServiceTest
     }
 
     @Test
-    void shouldFindAllByCategory()
+    void shouldFindByCategory()
     {
         String categoryString = "Stocks";
         InvestmentCategory category = new InvestmentCategory(categoryString);
@@ -78,24 +76,24 @@ public class InvestmentServiceTest
         Investment investment2 = mock(Investment.class);
         List<Investment> expectedInvestments = Arrays.asList(investment1, investment2);
         when(investmentFactory.createInvestmentCategory(categoryString)).thenReturn(Optional.of(category));
-        when(investmentRepo.findAllByCategory(categoryString)).thenReturn(expectedInvestments);
+        when(investmentRepo.findByCategory(categoryString)).thenReturn(expectedInvestments);
 
         // Act
-        Iterable<Investment> result = investmentService.findAllByCategory(categoryString);
+        Iterable<Investment> result = investmentService.findByCategory(categoryString);
 
         // Assert
         assertIterableEquals(expectedInvestments, result);
     }
 
     @Test
-    void shouldReturnsEmptyListFindAllByCategory()
+    void shouldReturnsEmptyListFindByCategory()
     {
         // Arrange
         String invalidCategory = "InvalidCategory";
         when(investmentFactory.createInvestmentCategory(invalidCategory)).thenReturn(Optional.empty());
 
         // Act
-        Iterable<Investment> result = investmentService.findAllByCategory(invalidCategory);
+        Iterable<Investment> result = investmentService.findByCategory(invalidCategory);
 
         // Act
         assertNotNull(result);

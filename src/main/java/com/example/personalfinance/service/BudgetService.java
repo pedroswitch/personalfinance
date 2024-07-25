@@ -31,10 +31,10 @@ public class BudgetService implements BudgetOperations<Budget>
     }
 
     @Override
-    public Iterable<Budget> findAllByCategory(String category)
+    public Iterable<Budget> findByCategory(String category)
     {
         Optional<BudgetCategory> budgetCategory = budgetFactory.createBudgetCategory(category);
-        return budgetCategory.map(value -> this.budgetRepo.findAllByCategory(value.getCategory()))
+        return budgetCategory.map(value -> budgetRepo.findByCategory(value.getCategory()))
                 .orElseGet(List::of);
     }
 
@@ -45,6 +45,6 @@ public class BudgetService implements BudgetOperations<Budget>
     @Override
     public Iterable<Budget> findAll()
     {
-        return this.budgetRepo.findAll();
+        return budgetRepo.findAll();
     }
 }

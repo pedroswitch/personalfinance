@@ -27,22 +27,22 @@ public class InvestmentService implements InvestmentOperations<Investment>
     }
 
     @Override
-    public Iterable<Investment> findAllByCategory(String category)
+    public Iterable<Investment> findByCategory(String category)
     {
         Optional<InvestmentCategory> invCategory = investmentFactory.createInvestmentCategory(category);
-        return invCategory.map(value -> this.investmentRepo.findAllByCategory(value.getCategory()))
+        return invCategory.map(value -> investmentRepo.findByCategory(value.getCategory()))
                 .orElseGet(List::of);
     }
 
     @Override
     public boolean delete(long id)
     {
-        return this.investmentRepo.delete(id);
+        return investmentRepo.delete(id);
     }
 
     @Override
     public Iterable<Investment> findAll()
     {
-        return this.investmentRepo.findAll();
+        return investmentRepo.findAll();
     }
 }

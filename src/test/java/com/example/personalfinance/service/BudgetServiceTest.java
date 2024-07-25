@@ -58,7 +58,7 @@ public class BudgetServiceTest {
     }
 
     @Test
-    void shouldFindAllByCategory()
+    void shouldFindByCategory()
     {
         // Arrange
         String categoryString = "House";
@@ -67,24 +67,24 @@ public class BudgetServiceTest {
         Budget budget2 = mock(Budget.class);
         List<Budget> expectedBudgets = Arrays.asList(budget1, budget2);
         when(budgetFactory.createBudgetCategory(categoryString)).thenReturn(Optional.of(category));
-        when(budgetRepo.findAllByCategory(categoryString)).thenReturn(expectedBudgets);
+        when(budgetRepo.findByCategory(categoryString)).thenReturn(expectedBudgets);
 
         // Act
-        Iterable<Budget> result = budgetService.findAllByCategory(categoryString);
+        Iterable<Budget> result = budgetService.findByCategory(categoryString);
 
         // Assert
         assertIterableEquals(expectedBudgets, result);
     }
 
     @Test
-    void shouldReturnsEmptyListFindAllByCategory()
+    void shouldReturnsEmptyListFindByCategory()
     {
         // Arrange
         String invalidCategory = "InvalidCategory";
         when(budgetFactory.createBudgetCategory(invalidCategory)).thenReturn(Optional.empty());
 
         // Act
-        Iterable<Budget> result = budgetService.findAllByCategory(invalidCategory);
+        Iterable<Budget> result = budgetService.findByCategory(invalidCategory);
 
         // Assert
         assertNotNull(result);
