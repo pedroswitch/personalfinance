@@ -71,10 +71,15 @@ public class InvestmentServiceTest
     void shouldFindByCategory()
     {
         String categoryString = "Stocks";
+        InvestmentId id = new InvestmentId(1L);
         InvestmentCategory category = new InvestmentCategory(categoryString);
-        Investment investment1 = mock(Investment.class);
-        Investment investment2 = mock(Investment.class);
-        List<Investment> expectedInvestments = Arrays.asList(investment1, investment2);
+        InvestmentDescription description = new InvestmentDescription("MSFT");
+        Date purchaseDate = new Date(LocalDate.of(2024, 07, 24));
+        Date saleDate = new Date(LocalDate.of(1900, 1, 1));
+        InvestmentQty qty = new InvestmentQty(100);
+        Values value = new Values(10000.00);
+        Investment investment1 = new Investment(id, category, description, purchaseDate, saleDate, qty, value);
+        List<Investment> expectedInvestments = Arrays.asList(investment1);
         when(investmentFactory.createInvestmentCategory(categoryString)).thenReturn(Optional.of(category));
         when(investmentRepo.findByCategory(categoryString)).thenReturn(expectedInvestments);
 
@@ -132,8 +137,23 @@ public class InvestmentServiceTest
     void shouldFindAll()
     {
         // Arrange
-        Investment investment1 = mock(Investment.class);
-        Investment investment2 = mock(Investment.class);
+        String categoryString = "Stocks";
+        InvestmentId id1 = new InvestmentId(1L);
+        InvestmentCategory category1 = new InvestmentCategory(categoryString);
+        InvestmentDescription description1 = new InvestmentDescription("MSFT");
+        Date purchaseDate1 = new Date(LocalDate.of(2024, 07, 24));
+        Date saleDate1 = new Date(LocalDate.of(1900, 1, 1));
+        InvestmentQty qty1 = new InvestmentQty(100);
+        Values value1 = new Values(10000.00);
+        InvestmentId id2 = new InvestmentId(2L);
+        InvestmentCategory category2 = new InvestmentCategory(categoryString);
+        InvestmentDescription description2 = new InvestmentDescription("ORCL");
+        Date purchaseDate2 = new Date(LocalDate.of(2024, 07, 24));
+        Date saleDate2 = new Date(LocalDate.of(1900, 1, 1));
+        InvestmentQty qty2 = new InvestmentQty(100);
+        Values value2 = new Values(10000.00);
+        Investment investment1 = new Investment(id1, category1, description1, purchaseDate1, saleDate1, qty1, value1);
+        Investment investment2 = new Investment(id2, category2, description2, purchaseDate2, saleDate2, qty2, value2);
         List<Investment> expectedInvestments = Arrays.asList(investment1, investment2);
         when(investmentRepo.findAll()).thenReturn(expectedInvestments);
 
