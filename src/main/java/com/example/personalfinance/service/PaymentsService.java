@@ -1,10 +1,11 @@
 package com.example.personalfinance.service;
 
+import com.example.personalfinance.domain.expense.Expense;
 import com.example.personalfinance.domain.expense.Payment;
 
 import java.util.List;
 
-public class PaymentsService implements ExpenseOperations<Payment>
+public class PaymentsService implements ExpenseOperations<Expense>
 {
     public Payment add(Payment item)
     {
@@ -12,7 +13,7 @@ public class PaymentsService implements ExpenseOperations<Payment>
     }
 
     @Override
-    public Iterable<Payment> findBySupplier(String supplier)
+    public Iterable<Expense> findBySupplier(String supplier)
     {
         return List.of();
     }
@@ -24,7 +25,7 @@ public class PaymentsService implements ExpenseOperations<Payment>
     }
 
     @Override
-    public Iterable<Payment> findAll()
+    public Iterable<Expense> findAll()
     {
         return List.of();
     }
