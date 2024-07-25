@@ -1,11 +1,11 @@
 package com.example.personalfinance.service;
 
+import com.example.personalfinance.domain.expense.Expense;
 import com.example.personalfinance.domain.expense.RecurringBill;
 
 import java.util.List;
-import java.util.Optional;
 
-public class RecurringBillService implements ExpenseOperations<RecurringBill>
+public class RecurringBillService implements ExpenseOperations<Expense>
 {
     public RecurringBill add(RecurringBill item)
     {
@@ -13,7 +13,7 @@ public class RecurringBillService implements ExpenseOperations<RecurringBill>
     }
 
     @Override
-    public Iterable<RecurringBill> findBySupplier(String supplier)
+    public Iterable<Expense> findBySupplier(String supplier)
     {
         return List.of();
     }
@@ -25,7 +25,7 @@ public class RecurringBillService implements ExpenseOperations<RecurringBill>
     }
 
     @Override
-    public Iterable<RecurringBill> findAll()
+    public Iterable<Expense> findAll()
     {
         return List.of();
     }
