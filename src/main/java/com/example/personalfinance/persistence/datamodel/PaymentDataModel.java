@@ -1,23 +1,25 @@
 package com.example.personalfinance.persistence.datamodel;
 
-import com.example.personalfinance.domain.expense.Expense;
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import com.example.personalfinance.domain.payment.Payment;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDate;
 
 @Entity
-@DiscriminatorValue("payment")
+@Table(name="payment")
 @Getter
-public class PaymentDataModel extends com.example.personalfinance.persistence.datamodel.ExpenseDataModel
+public class PaymentDataModel
 {
-    @Column(name = "invoice_date")
-    private LocalDate invoiceDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    @Column(name = "invoice_number")
-    private String invoiceNumber;
+    @Version
+    @Column(columnDefinition = "integer DEFAULT 0", nullable = false)
+    private int version;
+
+    private long expenseId;
 
     @Column(name = "payment_date")
     private LocalDate paymentDate;
@@ -26,11 +28,10 @@ public class PaymentDataModel extends com.example.personalfinance.persistence.da
     {
     }
 
-    public PaymentDataModel(Expense expense, LocalDate invoiceDate, String invoiceNumber, LocalDate paymentDate)
+    public PaymentDataModel(Payment payment)
     {
-        super(expense);
-        this.invoiceDate = invoiceDate;
-        this.invoiceNumber = invoiceNumber;
-        this.paymentDate = paymentDate;
+        this.id = payment.getId().getId();
+        this.expenseId = payment.getExpenseId().getId();
+        this.paymentDate = payment.getPaymentDate().getDate();
     }
 }

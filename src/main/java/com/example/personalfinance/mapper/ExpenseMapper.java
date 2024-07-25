@@ -5,7 +5,6 @@ import com.example.personalfinance.domain.expense.ExpenseFactory;
 import com.example.personalfinance.domain.valueobjects.*;
 import com.example.personalfinance.persistence.datamodel.ExpenseDataModel;
 import com.example.personalfinance.persistence.datamodel.InvoiceRegistrationDataModel;
-import com.example.personalfinance.persistence.datamodel.PaymentDataModel;
 import com.example.personalfinance.persistence.datamodel.RecurringBillDataModel;
 
 import java.util.ArrayList;
@@ -30,14 +29,6 @@ public class ExpenseMapper
             Date date = new Date(expense.getDate());
             ExpenseStatus status = new ExpenseStatus(expense.isStatus());
             return expenseFactory.createExpense(id, type, supplier, category, value, number, date, status);
-        }
-
-        if (type.getType().equals(PAYMENT)) {
-            PaymentDataModel expense = (PaymentDataModel) expenseDataModel;
-            Date date = new Date(expense.getInvoiceDate());
-            InvoiceNumber number = new InvoiceNumber(expense.getInvoiceNumber());
-            Date paymentDate = new Date(expense.getPaymentDate());
-            return expenseFactory.createExpense(id, type, supplier, category, value, date, number, paymentDate);
         }
 
         if (type.getType().equals(REC_BILL)) {

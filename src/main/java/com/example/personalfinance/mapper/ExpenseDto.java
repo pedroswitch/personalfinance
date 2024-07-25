@@ -14,7 +14,6 @@ public class ExpenseDto extends RepresentationModel<ExpenseDto>
     public InvoiceNumber number;
     public Date date;
     public ExpenseStatus status;
-    public Date paymentDate;
     public Date initialDate;
     public Date finalDate;
 
@@ -56,46 +55,6 @@ public class ExpenseDto extends RepresentationModel<ExpenseDto>
         this.number = number;
         this.date = date;
         this.status = status;
-    }
-
-    // Payment
-
-    public ExpenseDto(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, InvoiceNumber number, Date date, Date paymentDate)
-    {
-        this.id = id;
-        this.type = type;
-        this.supplier = supplier;
-        this.category = category;
-        this.value = value;
-        this.number = number;
-        this.date = date;
-        this.paymentDate = paymentDate;
-    }
-
-    public ExpenseDto(Link initialLink, ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, InvoiceNumber number, Date date, Date paymentDate)
-    {
-        super(initialLink);
-        this.id = id;
-        this.type = type;
-        this.supplier = supplier;
-        this.category = category;
-        this.value = value;
-        this.number = number;
-        this.date = date;
-        this.paymentDate = paymentDate;
-    }
-
-    public ExpenseDto(Iterable<Link> initialLinks, ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, InvoiceNumber number, Date date, Date paymentDate)
-    {
-        super(initialLinks);
-        this.id = id;
-        this.type = type;
-        this.supplier = supplier;
-        this.category = category;
-        this.value = value;
-        this.number = number;
-        this.date = date;
-        this.paymentDate = paymentDate;
     }
 
     // Recurring Bill

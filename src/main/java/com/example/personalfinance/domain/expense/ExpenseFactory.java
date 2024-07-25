@@ -28,6 +28,7 @@ public class ExpenseFactory
         }
     }
 
+    // InvoiceRegistration
     public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, InvoiceNumber number, Date date, ExpenseStatus status)
     {
         try {
@@ -44,22 +45,7 @@ public class ExpenseFactory
         }
     }
 
-    public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date date, InvoiceNumber number, Date paymentDate)
-    {
-        try {
-            String fullPath = PATH + type.getType();
-
-            return (Expense) Class.forName(fullPath)
-                    .getConstructor(ExpenseId.class, ExpenseType.class, ExpenseSupplier.class, ExpenseCategory.class, Values.class, Date.class, InvoiceNumber.class, Date.class)
-                    .newInstance(id, type, supplier, category, value, date, number, paymentDate);
-        } catch (ClassNotFoundException | InstantiationException |
-                 NoSuchMethodException | NullPointerException |
-                 InvocationTargetException | IllegalArgumentException |
-                 IllegalAccessException e) {
-            return null;
-        }
-    }
-
+    // RecurringBill
     public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, Date initialDate, Date finalDate)
     {
         try {
