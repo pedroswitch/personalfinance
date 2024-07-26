@@ -16,7 +16,7 @@ public class PaymentMapper
     {
         PaymentFactory paymentFactory = new PaymentFactory();
         PaymentId id = new PaymentId(paymentDataModel.getId());
-        ExpenseId expenseId = new ExpenseId(paymentDataModel.getExpenseId());
+        ExpenseId expenseId = new ExpenseId(paymentDataModel.getExpense().getId());
         Date paymentDate = new Date(paymentDataModel.getPaymentDate());
         return paymentFactory.createPayment(id, expenseId, paymentDate);
     }
