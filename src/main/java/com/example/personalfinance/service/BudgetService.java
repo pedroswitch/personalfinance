@@ -9,7 +9,7 @@ import com.example.personalfinance.domain.valueobjects.Values;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -35,7 +35,7 @@ public class BudgetService implements BudgetOperations<Budget>
     {
         Optional<BudgetCategory> budgetCategory = budgetFactory.createBudgetCategory(category);
         return budgetCategory.map(value -> budgetRepo.findByCategory(value.getCategory()))
-                .orElseGet(List::of);
+                .orElseGet(Collections::emptyList);
     }
 
     public boolean delete(long id) {

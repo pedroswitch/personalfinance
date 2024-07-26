@@ -6,7 +6,7 @@ import com.example.personalfinance.domain.repository.InvestmentRepo;
 import com.example.personalfinance.domain.valueobjects.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 
 public class InvestmentService implements InvestmentOperations<Investment>
@@ -31,7 +31,7 @@ public class InvestmentService implements InvestmentOperations<Investment>
     {
         Optional<InvestmentCategory> invCategory = investmentFactory.createInvestmentCategory(category);
         return invCategory.map(value -> investmentRepo.findByCategory(value.getCategory()))
-                .orElseGet(List::of);
+                .orElseGet(Collections::emptyList);
     }
 
     @Override

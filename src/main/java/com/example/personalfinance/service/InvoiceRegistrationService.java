@@ -6,7 +6,7 @@ import com.example.personalfinance.domain.repository.ExpenseRepo;
 import com.example.personalfinance.domain.valueobjects.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 
 public class InvoiceRegistrationService implements ExpenseOperations<Expense>
@@ -31,7 +31,7 @@ public class InvoiceRegistrationService implements ExpenseOperations<Expense>
     {
         Optional<ExpenseSupplier> invoiceSupplier = expenseFactory.createExpenseSupplier(supplier);
         return invoiceSupplier.map(value -> expenseRepo.findBySupplier(value.getName()))
-                .orElseGet(List::of);
+                .orElseGet(Collections::emptyList);
     }
 
     @Override
