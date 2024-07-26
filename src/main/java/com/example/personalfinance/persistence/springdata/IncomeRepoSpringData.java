@@ -9,9 +9,11 @@ import com.example.personalfinance.mapper.IncomeMappper;
 import com.example.personalfinance.persistence.datamodel.IncomeDataModel;
 import com.example.personalfinance.persistence.datamodel.SalaryDataModel;
 import com.example.personalfinance.persistence.datamodel.SideGigDataModel;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class IncomeRepoSpringData implements IncomeRepo
 {
     private final IncomeRepoSpringDataInterface _incomeInterface;

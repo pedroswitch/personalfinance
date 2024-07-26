@@ -5,9 +5,11 @@ import com.example.personalfinance.domain.repository.PaymentRepo;
 import com.example.personalfinance.domain.valueobjects.PaymentId;
 import com.example.personalfinance.mapper.PaymentMapper;
 import com.example.personalfinance.persistence.datamodel.PaymentDataModel;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class PaymentRepoSpringData implements PaymentRepo
 {
     private final PaymentRepoSpringDataInterface paymentInterface;

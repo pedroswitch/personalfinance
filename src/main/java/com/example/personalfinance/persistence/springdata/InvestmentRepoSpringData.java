@@ -5,9 +5,11 @@ import com.example.personalfinance.domain.repository.InvestmentRepo;
 import com.example.personalfinance.domain.valueobjects.InvestmentId;
 import com.example.personalfinance.mapper.InvestmentMapper;
 import com.example.personalfinance.persistence.datamodel.InvestmentDataModel;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class InvestmentRepoSpringData implements InvestmentRepo
 {
     private final InvestmentRepoSpringDataInterface investmentInterface;
