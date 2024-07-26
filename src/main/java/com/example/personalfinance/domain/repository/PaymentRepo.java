@@ -6,6 +6,6 @@ import com.example.personalfinance.domain.valueobjects.PaymentId;
 
 public interface PaymentRepo extends Repository<PaymentId, Payment>
 {
-    Iterable<Payment> findBySupplier(String supplier);
+    Iterable<Payment> findPaymentsBySupplier(String supplier);
     boolean delete(long id);
 }

@@ -50,10 +50,8 @@ public class PaymentRepoSpringData implements PaymentRepo
     }
 
     @Override
-    public Iterable<Payment> findBySupplier(String supplier)
-    {
-        Iterable<PaymentDataModel> payments = paymentInterface.findBySupplier(supplier);
-
+    public Iterable<Payment> findPaymentsBySupplier(String supplier) {
+        Iterable<PaymentDataModel> payments = paymentInterface.findPaymentsBySupplier(supplier);
         return PaymentMapper.paymentsDataModelToDomain(payments);
     }
 
@@ -66,4 +64,5 @@ public class PaymentRepoSpringData implements PaymentRepo
         }
         return false;
     }
+
 }

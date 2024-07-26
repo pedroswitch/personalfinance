@@ -19,7 +19,9 @@ public class PaymentDataModel
     @Column(columnDefinition = "integer DEFAULT 0", nullable = false)
     private int version;
 
-    private long expenseId;
+    @ManyToOne
+    @JoinColumn(name = "expenseid", nullable = false)
+    private ExpenseDataModel expense;
 
     @Column(name = "payment_date")
     private LocalDate paymentDate;
@@ -30,8 +32,6 @@ public class PaymentDataModel
 
     public PaymentDataModel(Payment payment)
     {
-        this.id = payment.getId().getId();
-        this.expenseId = payment.getExpenseId().getId();
         this.paymentDate = payment.getPaymentDate().getDate();
     }
 }
