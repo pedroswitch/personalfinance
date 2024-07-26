@@ -32,6 +32,7 @@ public class PaymentDataModel
 
     public PaymentDataModel(Payment payment)
     {
+        this.id = payment.identity().getId();
         this.paymentDate = payment.getPaymentDate().getDate();
     }
 }
