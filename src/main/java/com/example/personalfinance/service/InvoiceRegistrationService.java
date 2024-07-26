@@ -5,10 +5,12 @@ import com.example.personalfinance.domain.expense.ExpenseFactory;
 import com.example.personalfinance.domain.repository.ExpenseRepo;
 import com.example.personalfinance.domain.valueobjects.*;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Optional;
 
+@Service
 public class InvoiceRegistrationService implements ExpenseOperations<Expense>
 {
     private final ExpenseRepo expenseRepo;

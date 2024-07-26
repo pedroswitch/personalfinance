@@ -5,16 +5,18 @@ import com.example.personalfinance.domain.investment.InvestmentFactory;
 import com.example.personalfinance.domain.repository.InvestmentRepo;
 import com.example.personalfinance.domain.valueobjects.*;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Optional;
 
+@Service
 public class InvestmentService implements InvestmentOperations<Investment>
 {
     private final InvestmentRepo investmentRepo;
     private final InvestmentFactory investmentFactory;
 
-    public InvestmentService(@Qualifier("investmentReposSpringData") InvestmentRepo investmentRepo, InvestmentFactory investmentFactory)
+    public InvestmentService(@Qualifier("investmentRepoSpringData") InvestmentRepo investmentRepo, InvestmentFactory investmentFactory)
     {
         this.investmentRepo = investmentRepo;
         this.investmentFactory = investmentFactory;

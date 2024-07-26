@@ -9,11 +9,12 @@ import com.example.personalfinance.domain.valueobjects.ExpenseId;
 import com.example.personalfinance.domain.valueobjects.ExpenseSupplier;
 import com.example.personalfinance.domain.valueobjects.PaymentId;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PaymentService implements PaymentOperations<Payment>
 {
     private final PaymentRepo paymentRepo;
