@@ -1,12 +1,12 @@
 package com.example.personalfinance.domain.expense;
 
 import com.example.personalfinance.domain.valueobjects.*;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
-@Service
+@Component
 public class ExpenseFactory
 {
 

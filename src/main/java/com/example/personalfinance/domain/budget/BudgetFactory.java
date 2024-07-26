@@ -3,11 +3,11 @@ package com.example.personalfinance.domain.budget;
 import com.example.personalfinance.domain.valueobjects.BudgetCategory;
 import com.example.personalfinance.domain.valueobjects.BudgetId;
 import com.example.personalfinance.domain.valueobjects.Values;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Service
+@Component
 public class BudgetFactory
 {
     public Budget createBudget(BudgetId id, BudgetCategory category, Values value)

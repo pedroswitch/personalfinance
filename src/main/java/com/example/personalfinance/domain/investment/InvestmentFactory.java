@@ -1,12 +1,12 @@
 package com.example.personalfinance.domain.investment;
 
 import com.example.personalfinance.domain.valueobjects.*;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-@Service
+@Component
 public class InvestmentFactory
 {
     public Investment createInvestment(InvestmentId id, InvestmentCategory category, InvestmentDescription description, Date purchaseDate, Date saleDate, InvestmentQty qty, Values value)

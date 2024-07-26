@@ -3,9 +3,11 @@ package com.example.personalfinance.domain.payment;
 import com.example.personalfinance.domain.valueobjects.Date;
 import com.example.personalfinance.domain.valueobjects.ExpenseId;
 import com.example.personalfinance.domain.valueobjects.PaymentId;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class PaymentFactory
 {
     public Payment createPayment(PaymentId id, ExpenseId expenseId, Date paymentDate)
