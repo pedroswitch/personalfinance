@@ -79,6 +79,15 @@ public class IncomeFactory
         }
     }
 
+    public Optional<SideGigName> createSideGigName(String name)
+    {
+        try {
+            return Optional.of(new SideGigName(name));
+        } catch (IllegalArgumentException e) {
+            return Optional.empty();
+        }
+    }
+
     public Optional<Date> createDate(LocalDate date)
     {
         try {
