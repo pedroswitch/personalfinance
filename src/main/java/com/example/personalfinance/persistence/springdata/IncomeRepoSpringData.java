@@ -16,11 +16,11 @@ import java.util.Optional;
 @Repository
 public class IncomeRepoSpringData implements IncomeRepo
 {
-    private final IncomeRepoSpringDataInterface _incomeInterface;
+    private final IncomeRepoSpringDataInterface incomeInterface;
 
     public IncomeRepoSpringData(IncomeRepoSpringDataInterface incomeInterface)
     {
-        this._incomeInterface = incomeInterface;
+        this.incomeInterface = incomeInterface;
     }
 
     @Override
@@ -34,21 +34,38 @@ public class IncomeRepoSpringData implements IncomeRepo
         } else {
             incomeDataModel = new IncomeDataModel(income);
         }
-        IncomeDataModel result = _incomeInterface.save(incomeDataModel);
+        IncomeDataModel result = incomeInterface.save(incomeDataModel);
         return IncomeMappper.incomeDataModelToDomain(result);
     }
 
     @Override
     public Iterable<Income> findAll()
     {
-        Iterable<IncomeDataModel> incomes = _incomeInterface.findAll();
+        Iterable<IncomeDataModel> incomes = incomeInterface.findAll();
         return IncomeMappper.incomesDataModelToDomain(incomes);
+    }
+
+    @Override
+    public Iterable<Income> findByName(String name)
+    {
+        Iterable<IncomeDataModel> incomes = incomeInterface.findByName(name);
+        return IncomeMappper.incomesDataModelToDomain(incomes);
+    }
+
+    @Override
+    public boolean delete(long id)
+    {
+        if (incomeInterface.existsById(id)) {
+            incomeInterface.deleteById(id);
+            return !incomeInterface.existsById(id);
+        }
+        return false;
     }
 
     @Override
     public Optional<Income> findById(IncomeId id)
     {
-        Optional<IncomeDataModel> model = this._incomeInterface.findById(id.id);
+        Optional<IncomeDataModel> model = this.incomeInterface.findById(id.id);
         if (model.isPresent()) {
             return Optional.of(IncomeMappper.incomeDataModelToDomain(model.get()));
         }
@@ -58,6 +75,6 @@ public class IncomeRepoSpringData implements IncomeRepo
     @Override
     public boolean existsById(IncomeId id)
     {
-        return this._incomeInterface.existsById(id.id);
+        return this.incomeInterface.existsById(id.id);
     }
 }

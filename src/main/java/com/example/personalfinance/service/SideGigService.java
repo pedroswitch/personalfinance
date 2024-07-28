@@ -1,18 +1,19 @@
 package com.example.personalfinance.service;
 
+import com.example.personalfinance.domain.income.Income;
 import com.example.personalfinance.domain.income.SideGig;
 
 import java.util.List;
 
-public class SideGigService implements IncomeOperations<SideGig>
+public class SideGigService implements IncomeOperations<Income>
 {
-    public SideGig add(SideGig item)
+    public Income add(SideGig item)
     {
         return null;
     }
 
     @Override
-    public Iterable<SideGig> findByName(String name)
+    public Iterable<Income> findByName(String name)
     {
         return List.of();
     }
@@ -24,7 +25,7 @@ public class SideGigService implements IncomeOperations<SideGig>
     }
 
     @Override
-    public Iterable<SideGig> findAll()
+    public Iterable<Income> findAll()
     {
         return List.of();
     }

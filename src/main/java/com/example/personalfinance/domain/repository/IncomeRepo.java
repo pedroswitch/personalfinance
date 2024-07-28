@@ -6,4 +6,6 @@ import com.example.personalfinance.domain.valueobjects.IncomeId;
 
 public interface IncomeRepo extends Repository<IncomeId, Income>
 {
+    Iterable<Income> findByName(String name);
+    boolean delete(long id);
 }

@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IncomeRepoSpringDataInterface extends JpaRepository<IncomeDataModel, Long>
 {
+    Iterable<IncomeDataModel> findByName(String name);
 }

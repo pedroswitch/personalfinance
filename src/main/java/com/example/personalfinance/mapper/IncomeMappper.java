@@ -25,7 +25,7 @@ public class IncomeMappper
 
         if (incomeDataModel.getType().equals(SALARY)) {
             SalaryDataModel income = (SalaryDataModel) incomeDataModel;
-            EmployerName name = new EmployerName(income.getEmployerName());
+            EmployerName name = new EmployerName(income.getName());
             return incomeFactory.createIncome(id, type, date, value, name);
         }
 

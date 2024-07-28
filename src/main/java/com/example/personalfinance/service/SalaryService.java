@@ -1,31 +1,48 @@
 package com.example.personalfinance.service;
 
-import com.example.personalfinance.domain.income.Salary;
+import com.example.personalfinance.domain.income.Income;
+import com.example.personalfinance.domain.income.IncomeFactory;
+import com.example.personalfinance.domain.repository.IncomeRepo;
+import com.example.personalfinance.domain.valueobjects.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.List;
+import java.util.Collections;
+import java.util.Optional;
 
-public class SalaryService implements IncomeOperations<Salary>
+public class SalaryService implements IncomeOperations<Income>
 {
-    public Salary add(Salary item)
+    private final IncomeRepo incomeRepo;
+    private final IncomeFactory incomeFactory;
+
+    public SalaryService(@Qualifier("incomeRepoSpringData") IncomeRepo incomeRepo, IncomeFactory incomeFactory)
     {
-        return null;
+        this.incomeRepo = incomeRepo;
+        this.incomeFactory = incomeFactory;
+    }
+
+    public Income add(IncomeId id, IncomeType type, Date date, Values value, EmployerName name)
+    {
+        Income salaryToSave = incomeFactory.createIncome(id, type, date, value, name);
+        return incomeRepo.save(salaryToSave);
     }
 
     @Override
-    public Iterable<Salary> findByName(String name)
+    public Iterable<Income> findByName(String name)
     {
-        return List.of();
+        Optional<EmployerName> employerName = incomeFactory.createEmployerName(name);
+        return employerName.map(value -> incomeRepo.findByName(value.getName()))
+                .orElseGet(Collections::emptyList);
     }
 
     @Override
     public boolean delete(long id)
     {
-        return false;
+        return incomeRepo.delete(id);
     }
 
     @Override
-    public Iterable<Salary> findAll()
+    public Iterable<Income> findAll()
     {
-        return List.of();
+        return incomeRepo.findAll();
     }
 }

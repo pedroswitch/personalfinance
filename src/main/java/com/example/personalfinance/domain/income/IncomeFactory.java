@@ -70,6 +70,15 @@ public class IncomeFactory
         }
     }
 
+    public Optional<EmployerName> createEmployerName(String name)
+    {
+        try {
+           return Optional.of(new EmployerName(name));
+        } catch (IllegalArgumentException e) {
+            return Optional.empty();
+        }
+    }
+
     public Optional<Date> createDate(LocalDate date)
     {
         try {
