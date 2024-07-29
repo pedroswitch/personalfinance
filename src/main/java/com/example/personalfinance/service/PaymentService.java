@@ -53,4 +53,16 @@ public class PaymentService implements PaymentOperations<Payment>
     {
         return paymentRepo.findAll();
     }
+
+    public Payment findById(long id)
+    {
+        Optional<PaymentId> paymentId = paymentFactory.createPaymentId(id);
+
+        if (paymentId.isPresent()) {
+            Optional<Payment> payment = paymentRepo.findById(paymentId.get());
+            return payment.orElse(null);
+        }
+
+        return null;
+    }
 }

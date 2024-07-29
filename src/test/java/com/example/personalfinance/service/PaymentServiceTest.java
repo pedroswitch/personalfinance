@@ -164,4 +164,39 @@ public class PaymentServiceTest
         assertFalse(result.iterator().hasNext());
     }
 
+    @Test
+    void shouldFindById()
+    {
+        long idLong = 1L;
+        ExpenseSupplier supplier = new ExpenseSupplier("Vodafone");
+        PaymentId id = new PaymentId(idLong);
+        ExpenseId expenseId = new ExpenseId(1L);
+        Date paymentDate = new Date(LocalDate.of(2024,7,26));
+        Payment payment = new Payment(id, expenseId, paymentDate);
+        when(paymentFactory.createPaymentId(idLong)).thenReturn(Optional.of(id));
+        when(paymentRepo.findById(id)).thenReturn(Optional.of(payment));
+
+        // Act
+        Payment result = paymentService.findById(idLong);
+
+        // Assert
+        assertEquals(payment, result);
+    }
+
+    @Test
+    void shouldReturnsEmptyListFindById()
+    {
+        // Arrange
+        long nonExistingPaymentId = 999L;
+        PaymentId id = new PaymentId(nonExistingPaymentId);
+        when(paymentFactory.createPaymentId(nonExistingPaymentId)).thenReturn(Optional.of(id));
+        when(paymentRepo.findById(id)).thenReturn(Optional.empty());
+
+        // Act
+        Payment result = paymentService.findById(nonExistingPaymentId);
+
+        // Assert
+        assertNull(result);
+    }
+
 }
