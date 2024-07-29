@@ -149,4 +149,37 @@ public class BudgetServiceTest {
         assertNotNull(result);
         assertFalse(result.iterator().hasNext());
     }
+
+    @Test
+    void shouldFindById()
+    {
+        // Arrange
+        long idLong = 1L;
+        BudgetId id = new BudgetId(idLong);
+        BudgetCategory category = new BudgetCategory("House");
+        Values value = new Values(1000.00);
+        Budget budget = new Budget(id, category, value);
+        when(budgetFactory.createBudgetId(idLong)).thenReturn(Optional.of(id));
+        when(budgetRepo.findById(id)).thenReturn(Optional.of(budget));
+
+        // Act
+        Budget result = budgetService.findById(idLong);
+
+        // Assert
+        assertEquals(budget, result);
+    }
+
+    @Test
+    void shouldReturnsEmptyListFindById()
+    {
+        // Arrange
+        long nonExisstingBudgetId = 999L;
+        when(budgetFactory.createBudgetId(nonExisstingBudgetId)).thenReturn(Optional.empty());
+
+        // Act
+        Budget result = budgetService.findById(nonExisstingBudgetId);
+
+        // Assert
+        assertNull(result);
+    }
 }

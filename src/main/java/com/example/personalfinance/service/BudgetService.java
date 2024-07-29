@@ -47,4 +47,16 @@ public class BudgetService implements BudgetOperations<Budget>
     {
         return budgetRepo.findAll();
     }
+
+    public Budget findById(long id)
+    {
+        Optional<BudgetId> budgetId = budgetFactory.createBudgetId(id);
+
+        if (budgetId.isPresent()) {
+            Optional<Budget> budget = budgetRepo.findById(budgetId.get());
+            return budget.orElse(null);
+        }
+
+        return null;
+    }
 }
