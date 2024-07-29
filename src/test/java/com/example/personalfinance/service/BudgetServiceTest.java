@@ -173,7 +173,7 @@ public class BudgetServiceTest {
     }
 
     @Test
-    void shouldReturnsEmptyListFindById()
+    void shouldReturnsEmptyFindById()
     {
         // Arrange
         long nonExistingBudgetId = 999L;
