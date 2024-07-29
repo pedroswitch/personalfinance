@@ -173,11 +173,11 @@ public class BudgetServiceTest {
     void shouldReturnsEmptyListFindById()
     {
         // Arrange
-        long nonExisstingBudgetId = 999L;
-        when(budgetFactory.createBudgetId(nonExisstingBudgetId)).thenReturn(Optional.empty());
+        long nonExistingBudgetId = 999L;
+        when(budgetFactory.createBudgetId(nonExistingBudgetId)).thenReturn(Optional.empty());
 
         // Act
-        Budget result = budgetService.findById(nonExisstingBudgetId);
+        Budget result = budgetService.findById(nonExistingBudgetId);
 
         // Assert
         assertNull(result);
