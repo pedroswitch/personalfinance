@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -173,5 +172,42 @@ public class InvestmentServiceTest
         // Assert
         assertNotNull(result);
         assertFalse(result.iterator().hasNext());
+    }
+
+    @Test
+    void shouldFindById()
+    {
+        // Arrange
+        long idLong = 1L;
+        InvestmentId id = new InvestmentId(idLong);
+        InvestmentCategory category = new InvestmentCategory("Stock");
+        InvestmentDescription description = new InvestmentDescription("MSFT");
+        Date purchaseDate = new Date(LocalDate.of(2024, 07, 24));
+        Date saleDate = new Date(LocalDate.of(1900, 1, 1));
+        InvestmentQty qty = new InvestmentQty(100);
+        Values value = new Values(10000.00);
+        Investment investment = new Investment(id, category, description, purchaseDate, saleDate, qty, value);
+        when(investmentFactory.createInvestmentId(idLong)).thenReturn(Optional.of(id));
+        when(investmentRepo.findById(id)).thenReturn(Optional.of(investment));
+
+        // Act
+        Investment result = investmentService.findById(idLong);
+
+        // Assert
+        assertEquals(investment, result);
+    }
+
+    @Test
+    void shouldReturnsEmptyListFindById()
+    {
+        // Arrange
+        long nonExisstingBudgetId = 999L;
+        when(investmentFactory.createInvestmentId(nonExisstingBudgetId)).thenReturn(Optional.empty());
+
+        // Act
+        Investment result = investmentService.findById(nonExisstingBudgetId);
+
+        // Assert
+        assertNull(result);
     }
 }

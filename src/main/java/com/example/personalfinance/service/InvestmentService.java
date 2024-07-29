@@ -47,4 +47,17 @@ public class InvestmentService implements InvestmentOperations<Investment>
     {
         return investmentRepo.findAll();
     }
+
+    public Investment findById(long id)
+    {
+        Optional<InvestmentId> investmentId = investmentFactory.createInvestmentId(id);
+
+        if (investmentId.isPresent())
+        {
+            Optional<Investment> investment = investmentRepo.findById(investmentId.get());
+            return investment.orElse(null);
+        }
+
+        return null;
+    }
 }
