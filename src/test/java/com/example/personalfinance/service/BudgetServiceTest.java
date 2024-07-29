@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,7 +68,7 @@ public class BudgetServiceTest {
         Budget budget1 = new Budget(id, category, value);
         List<Budget> expectedBudgets = Arrays.asList(budget1);
         when(budgetFactory.createBudgetCategory(categoryString)).thenReturn(Optional.of(category));
-        when(budgetRepo.findByCategory(categoryString)).thenReturn(expectedBudgets);
+        when(budgetRepo.findByCategory(category.getCategory())).thenReturn(expectedBudgets);
 
         // Act
         Iterable<Budget> result = budgetService.findByCategory(categoryString);
@@ -80,11 +81,13 @@ public class BudgetServiceTest {
     void shouldReturnsEmptyListFindByCategory()
     {
         // Arrange
-        String invalidCategory = "InvalidCategory";
-        when(budgetFactory.createBudgetCategory(invalidCategory)).thenReturn(Optional.empty());
+        String nonExistingCategory = "nonExistingCategory";
+        BudgetCategory category = new BudgetCategory(nonExistingCategory);
+        when(budgetFactory.createBudgetCategory(nonExistingCategory)).thenReturn(Optional.of(category));
+        when(budgetRepo.findByCategory(category.getCategory())).thenReturn(Collections.EMPTY_LIST);
 
         // Act
-        Iterable<Budget> result = budgetService.findByCategory(invalidCategory);
+        Iterable<Budget> result = budgetService.findByCategory(nonExistingCategory);
 
         // Assert
         assertNotNull(result);
@@ -174,7 +177,9 @@ public class BudgetServiceTest {
     {
         // Arrange
         long nonExistingBudgetId = 999L;
-        when(budgetFactory.createBudgetId(nonExistingBudgetId)).thenReturn(Optional.empty());
+        BudgetId id = new BudgetId(nonExistingBudgetId);
+        when(budgetFactory.createBudgetId(nonExistingBudgetId)).thenReturn(Optional.of(id));
+        when(budgetRepo.findById(id)).thenReturn(Optional.empty());
 
         // Act
         Budget result = budgetService.findById(nonExistingBudgetId);
