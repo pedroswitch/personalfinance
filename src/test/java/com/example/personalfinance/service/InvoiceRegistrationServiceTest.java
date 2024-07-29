@@ -171,4 +171,42 @@ public class InvoiceRegistrationServiceTest
         assertNotNull(result);
         assertFalse(result.iterator().hasNext());
     }
+
+    @Test
+    void shouldFindById()
+    {
+        // Arrange
+        long idLong = 1L;
+        ExpenseId id = new ExpenseId(idLong);
+        ExpenseType type = new ExpenseType("InvoiceRegistration");
+        Date date = new Date(LocalDate.of(2024, 7, 24));
+        ExpenseSupplier supplier = new ExpenseSupplier("Vodafone");
+        InvoiceNumber number = new InvoiceNumber("1234");
+        ExpenseCategory category = new ExpenseCategory("House");
+        Values value = new Values(40.00);
+        ExpenseStatus status = new ExpenseStatus(false);
+        InvoiceRegistration invoice = new InvoiceRegistration(id, type, date, supplier, number, category, value, status);
+        when(expenseFactory.createExpenseId(idLong)).thenReturn(Optional.of(id));
+        when(expenseRepo.findById(id)).thenReturn(Optional.of(invoice));
+
+        // Act
+        Expense result = invoiceRegistrationService.findById(idLong);
+
+        // Assert
+        assertEquals(invoice, result);
+    }
+
+    @Test
+    void shouldReturnsEmptyListFindById()
+    {
+        // Arrange
+        long nonExistingInvoiceId = 999L;
+        when(expenseFactory.createExpenseId(nonExistingInvoiceId)).thenReturn(Optional.empty());
+
+        // Act
+        Expense result = invoiceRegistrationService.findById(nonExistingInvoiceId);
+
+        // Assert
+        assertNull(result);
+    }
 }

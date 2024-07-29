@@ -47,4 +47,17 @@ public class InvoiceRegistrationService implements ExpenseOperations<Expense>
     {
         return this.expenseRepo.findAll();
     }
+
+    public Expense findById(long id)
+    {
+        Optional<ExpenseId> invoiceId = expenseFactory.createExpenseId(id);
+
+        if (invoiceId.isPresent())
+        {
+            Optional<Expense> expense = expenseRepo.findById(invoiceId.get());
+            return expense.orElse(null);
+        }
+
+        return null;
+    }
 }
