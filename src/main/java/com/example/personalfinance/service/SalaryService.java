@@ -45,4 +45,17 @@ public class SalaryService implements IncomeOperations<Income>
     {
         return incomeRepo.findAll();
     }
+
+    public Income findById(long id)
+    {
+        Optional<IncomeId> salaryId = incomeFactory.createIncomeId(id);
+
+        if (salaryId.isPresent())
+        {
+            Optional<Income> income = incomeRepo.findById(salaryId.get());
+            return income.orElse(null);
+        }
+
+        return null;
+    }
 }

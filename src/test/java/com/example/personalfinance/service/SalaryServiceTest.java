@@ -159,4 +159,42 @@ public class SalaryServiceTest
         assertNotNull(result);
         assertFalse(result.iterator().hasNext());
     }
+
+    @Test
+    void shouldFindById()
+    {
+        // Arrange
+        long idLong = 1L;
+        IncomeId id = new IncomeId(idLong);
+        IncomeType type = new IncomeType("Salary");
+        Date date = new Date(LocalDate.of(2024,7,28));
+        Values value = new Values(1300.00);
+        EmployerName name = new EmployerName("XPTO");
+        Salary salary = new Salary(id, type, date, value, name);
+        when(incomeFactory.createIncomeId(idLong)).thenReturn(Optional.of(id));
+        when(incomeRepo.findById(id)).thenReturn(Optional.of(salary));
+
+        // Act
+        Income result = salaryService.findById(idLong);
+
+        // Assert
+        assertEquals(salary, result);
+    }
+
+    @Test
+    void shouldReturnsEmptyListFindById()
+    {
+        // Arrange
+        long nonExistingSalaryId = 999L;
+        IncomeId id = new IncomeId(nonExistingSalaryId);
+        when(incomeFactory.createIncomeId(nonExistingSalaryId)).thenReturn(Optional.of(id));
+        when(incomeRepo.findById(id)).thenReturn(Optional.empty());
+
+        // Act
+        Income result = salaryService.findById(nonExistingSalaryId);
+
+        // Assert
+        assertNull(result);
+    }
+
 }
