@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,11 +89,13 @@ public class RecurringBillServiceTest
     void shouldReturnsEmptyListFindBySupplier()
     {
         // Arrange
-        String invalidName = "XPTO";
-        when(expenseFactory.createExpenseSupplier(invalidName)).thenReturn(Optional.empty());
+        String nonExistingName = "XPTO";
+        ExpenseSupplier supplier = new ExpenseSupplier(nonExistingName);
+        when(expenseFactory.createExpenseSupplier(nonExistingName)).thenReturn(Optional.of(supplier));
+        when(expenseRepo.findBySupplier(supplier.getName())).thenReturn(Collections.EMPTY_LIST);
 
         // Act
-        Iterable<Expense> result = recurringBillService.findBySupplier(invalidName);
+        Iterable<Expense> result = recurringBillService.findBySupplier(nonExistingName);
 
         // Assert
         assertNotNull(result);
