@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,11 +91,13 @@ public class InvoiceRegistrationServiceTest
     void shouldReturnsEmptyListFindBySupplier()
     {
         // Arrange
-        String invalidName = "XPTO";
-        when(expenseFactory.createExpenseSupplier(invalidName)).thenReturn(Optional.empty());
+        String nonExistingName = "XPTO";
+        ExpenseSupplier supplier = new ExpenseSupplier(nonExistingName);
+        when(expenseFactory.createExpenseSupplier(nonExistingName)).thenReturn(Optional.of(supplier));
+        when(expenseRepo.findBySupplier(supplier.getName())).thenReturn(Collections.EMPTY_LIST);
 
         // Act
-        Iterable<Expense> result = invoiceRegistrationService.findBySupplier(invalidName);
+        Iterable<Expense> result = invoiceRegistrationService.findBySupplier(nonExistingName);
 
         // Assert
         assertNotNull(result);
@@ -201,7 +204,9 @@ public class InvoiceRegistrationServiceTest
     {
         // Arrange
         long nonExistingInvoiceId = 999L;
-        when(expenseFactory.createExpenseId(nonExistingInvoiceId)).thenReturn(Optional.empty());
+        ExpenseId id = new ExpenseId(nonExistingInvoiceId);
+        when(expenseFactory.createExpenseId(nonExistingInvoiceId)).thenReturn(Optional.of(id));
+        when(expenseRepo.findById(id)).thenReturn(Optional.empty());
 
         // Act
         Expense result = invoiceRegistrationService.findById(nonExistingInvoiceId);
