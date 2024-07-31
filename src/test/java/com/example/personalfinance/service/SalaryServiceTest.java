@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,7 +83,9 @@ public class SalaryServiceTest
     {
         // Arrange
         String invalidName = "OTPX";
-        when(incomeFactory.createEmployerName(invalidName)).thenReturn(Optional.empty());
+        EmployerName name = new EmployerName(invalidName);
+        when(incomeFactory.createEmployerName(invalidName)).thenReturn(Optional.of(name));
+        when(incomeRepo.findByName(name.getName())).thenReturn(Collections.EMPTY_LIST);
 
         // Act
         Iterable<Income> result = salaryService.findByName(invalidName);
