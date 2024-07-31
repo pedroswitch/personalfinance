@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,11 +94,13 @@ public class InvestmentServiceTest
     void shouldReturnsEmptyListFindByCategory()
     {
         // Arrange
-        String invalidCategory = "InvalidCategory";
-        when(investmentFactory.createInvestmentCategory(invalidCategory)).thenReturn(Optional.empty());
+        String nonExistingCategory = "nonExistingCategory";
+        InvestmentCategory category = new InvestmentCategory(nonExistingCategory);
+        when(investmentFactory.createInvestmentCategory(nonExistingCategory)).thenReturn(Optional.of(category));
+        when(investmentRepo.findByCategory(category.getCategory())).thenReturn((Collections.EMPTY_LIST));
 
         // Act
-        Iterable<Investment> result = investmentService.findByCategory(invalidCategory);
+        Iterable<Investment> result = investmentService.findByCategory(nonExistingCategory);
 
         // Act
         assertNotNull(result);
@@ -122,11 +125,11 @@ public class InvestmentServiceTest
     void shouldNotDelete()
     {
         // Arrange
-        long nonExistingBudgetId = 999L;
-        when(investmentRepo.delete(nonExistingBudgetId)).thenReturn(false);
+        long nonExistingInvestmentId = 999L;
+        when(investmentRepo.delete(nonExistingInvestmentId)).thenReturn(false);
 
         // Act
-        boolean result = investmentRepo.delete(nonExistingBudgetId);
+        boolean result = investmentRepo.delete(nonExistingInvestmentId);
 
         // Assert
         assertFalse(result);
@@ -201,11 +204,13 @@ public class InvestmentServiceTest
     void shouldReturnsEmptyListFindById()
     {
         // Arrange
-        long nonExisstingBudgetId = 999L;
-        when(investmentFactory.createInvestmentId(nonExisstingBudgetId)).thenReturn(Optional.empty());
+        long nonExistingInvestmentId = 999L;
+        InvestmentId id = new InvestmentId(nonExistingInvestmentId);
+        when(investmentFactory.createInvestmentId(nonExistingInvestmentId)).thenReturn(Optional.of(id));
+        when(investmentRepo.findById(id)).thenReturn(Optional.empty());
 
         // Act
-        Investment result = investmentService.findById(nonExisstingBudgetId);
+        Investment result = investmentService.findById(nonExistingInvestmentId);
 
         // Assert
         assertNull(result);
