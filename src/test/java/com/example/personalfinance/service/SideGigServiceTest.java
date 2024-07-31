@@ -160,4 +160,41 @@ public class SideGigServiceTest
         assertNotNull(result);
         assertFalse(result.iterator().hasNext());
     }
+
+    @Test
+    void shouldFindById()
+    {
+        // Arrange
+        long idLong = 1L;
+        IncomeId id = new IncomeId(idLong);
+        IncomeType type = new IncomeType("SideGig");
+        Date date = new Date(LocalDate.of(2024,07,28));
+        SideGigName name = new SideGigName("Game");
+        Values value = new Values(100.00);
+        SideGig sideGig = new SideGig(id, type, date, value, name);
+        when(incomeFactory.createIncomeId(idLong)).thenReturn(Optional.of(id));
+        when(incomeRepo.findById(id)).thenReturn(Optional.of(sideGig));
+
+        // Act
+        Income result = sideGigService.findById(idLong);
+
+        // Assert
+        assertEquals(sideGig, result);
+    }
+
+    @Test
+    void shouldReturnsEmptyListFindById()
+    {
+        // Arrange
+        long nonExistingSideGigId = 999L;
+        IncomeId id = new IncomeId(nonExistingSideGigId);
+        when(incomeFactory.createIncomeId(nonExistingSideGigId)).thenReturn(Optional.of(id));
+        when(incomeRepo.findById(id)).thenReturn(Optional.empty());
+
+        // Act
+        Income result = sideGigService.findById(nonExistingSideGigId);
+
+        // Assert
+        assertNull(result);
+    }
 }

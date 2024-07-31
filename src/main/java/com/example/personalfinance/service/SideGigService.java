@@ -45,4 +45,17 @@ public class SideGigService implements IncomeOperations<Income>
     {
         return incomeRepo.findAll();
     }
+
+    public Income findById(long id)
+    {
+        Optional<IncomeId> sideGigId = incomeFactory.createIncomeId(id);
+
+        if (sideGigId.isPresent())
+        {
+            Optional<Income> income = incomeRepo.findById(sideGigId.get());
+            return income.orElse(null);
+        }
+
+        return null;
+    }
 }
