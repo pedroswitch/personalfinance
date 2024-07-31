@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,11 +83,13 @@ public class SideGigServiceTest
     void shouldReturnsEmptyListFindByName()
     {
         // Arrange
-        String invalidName = "XPTO";
-        when(incomeFactory.createSideGigName(invalidName)).thenReturn(Optional.empty());
+        String nonExistingName = "XPTO";
+        SideGigName name = new SideGigName(nonExistingName);
+        when(incomeFactory.createSideGigName(nonExistingName)).thenReturn(Optional.of(name));
+        when(incomeRepo.findByName(name.getName())).thenReturn(Collections.EMPTY_LIST);
 
         // Act
-        Iterable<Income> result = sideGigService.findByName(invalidName);
+        Iterable<Income> result = sideGigService.findByName(nonExistingName);
 
         // Assert
         assertNotNull(result);
