@@ -170,4 +170,44 @@ public class RecurringBillServiceTest
         assertNotNull(result);
         assertFalse(result.iterator().hasNext());
     }
+
+    @Test
+    void shouldFindById()
+    {
+        // Arrange
+        long idLong = 1L;
+        ExpenseId id = new ExpenseId(idLong);
+        ExpenseType type = new ExpenseType("RecurringBill");
+        ExpenseSupplier supplier = new ExpenseSupplier("Vodafone");
+        ExpenseCategory category = new ExpenseCategory("House");
+        Values value = new Values(40.00);
+        Date initialDate = new Date(LocalDate.of(2024,7,27));
+        Date finalDate = new Date(LocalDate.of(2025, 6, 30));
+        RecurringBill recurringBill = new RecurringBill(id, type, supplier, category, value, initialDate, finalDate);
+        when(expenseFactory.createExpenseId(id.id)).thenReturn(Optional.of(id));
+        when(expenseRepo.findById(id)).thenReturn(Optional.of(recurringBill));
+
+        // Act
+        Expense result = recurringBillService.findById(idLong);
+
+        // Assert
+        assertEquals(recurringBill, result);
+    }
+
+    @Test
+    void shouldReturnsEmptyListFindById()
+    {
+        // Arrange
+        long nonExistingRecBillId = 999L;
+        ExpenseId id = new ExpenseId(nonExistingRecBillId);
+        when(expenseFactory.createExpenseId(nonExistingRecBillId)).thenReturn(Optional.of(id));
+        when(expenseRepo.findById(id)).thenReturn(Optional.empty());
+
+        // Act
+        Expense result = recurringBillService.findById(nonExistingRecBillId);
+
+        // Assert
+        assertNull(result);
+    }
+
 }
