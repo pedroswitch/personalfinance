@@ -47,4 +47,17 @@ public class RecurringBillService implements ExpenseOperations<Expense>
     {
         return expenseRepo.findAll();
     }
+
+    public Expense findById(long id)
+    {
+        Optional<ExpenseId> recBillId = expenseFactory.createExpenseId(id);
+
+        if (recBillId.isPresent())
+        {
+            Optional<Expense> expense = expenseRepo.findById(recBillId.get());
+            return expense.orElse(null);
+        }
+
+        return null;
+    }
 }
