@@ -1,10 +1,8 @@
 package com.example.personalfinance.service;
 
 import com.example.personalfinance.domain.expense.ExpenseFactory;
-import com.example.personalfinance.domain.expense.InvoiceRegistration;
 import com.example.personalfinance.domain.payment.Payment;
 import com.example.personalfinance.domain.payment.PaymentFactory;
-import com.example.personalfinance.domain.repository.ExpenseRepo;
 import com.example.personalfinance.domain.repository.PaymentRepo;
 import com.example.personalfinance.domain.valueobjects.*;
 import org.junit.jupiter.api.Test;
@@ -15,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,9 +28,6 @@ public class PaymentServiceTest
 
     @Mock
     private PaymentFactory paymentFactory;
-
-    @Mock
-    ExpenseRepo expenseRepo;
 
     @Mock
     private ExpenseFactory expenseFactory;
@@ -92,11 +88,13 @@ public class PaymentServiceTest
     void shouldReturnsEmptyListFindBySupplier()
     {
         // Arrange
-        String invalidSupplier = "InvalidSupplier";
-        when(expenseFactory.createExpenseSupplier(invalidSupplier)).thenReturn((Optional.empty()));
+        String nonExistingSupplier = "nonExistingSupplier";
+        ExpenseSupplier supplier = new ExpenseSupplier(nonExistingSupplier);
+        when(expenseFactory.createExpenseSupplier(nonExistingSupplier)).thenReturn(Optional.of(supplier));
+        when(paymentRepo.findPaymentsBySupplier(supplier.getName())).thenReturn(Collections.EMPTY_LIST);
 
         // Act
-        Iterable<Payment> result = paymentService.findBySupplier(invalidSupplier);
+        Iterable<Payment> result = paymentService.findBySupplier(nonExistingSupplier);
 
         // Assert
         assertNotNull(result);
