@@ -18,17 +18,6 @@ public class BudgetResourceHandler
         return dto;
     }
 
-    public static BudgetDto manageDelete(BudgetDto dto)
-    {
-        Link link = WebMvcLinkBuilder.linkTo(BudgetController.class)
-                .slash(dto.id)
-                .withSelfRel();
-
-        dto.add(link);
-
-        return dto;
-    }
-
     public static Iterable<BudgetDto> manageFindAll(Iterable<BudgetDto> dtos)
     {
         for (BudgetDto budgetDto : dtos) {
