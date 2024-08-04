@@ -1,9 +1,11 @@
 package com.example.personalfinance.mapper;
 
 import com.example.personalfinance.domain.valueobjects.*;
+import lombok.NoArgsConstructor;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
+@NoArgsConstructor
 public class ExpenseDto extends RepresentationModel<ExpenseDto>
 {
     public ExpenseId id;
