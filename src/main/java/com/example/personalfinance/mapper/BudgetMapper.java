@@ -29,4 +29,30 @@ public class BudgetMapper
         );
         return budgets;
     }
+
+    public static BudgetDto budgetToDto(Budget budget)
+    {
+        return new BudgetDto(budget.getId().getId(), budget.getCategory().getCategory(), budget.getValue().getValue());
+    }
+
+    public static Iterable<BudgetDto> budgetListToDto(Iterable<Budget> budgets)
+    {
+        List<BudgetDto> budgetListDto = new ArrayList<>();
+
+        budgets.forEach(budget -> {
+            BudgetDto budgetDto = budgetToDto(budget);
+            budgetListDto.add(budgetDto);
+        });
+
+        return budgetListDto;
+    }
+
+    public static Budget dtoToBudget(BudgetDto dto)
+    {
+        BudgetFactory budgetFactory = new BudgetFactory();
+        BudgetId id = new BudgetId(dto.id);
+        BudgetCategory category = new BudgetCategory(dto.category);
+        Values value = new Values(dto.value);
+        return budgetFactory.createBudget(id, category, value);
+    }
 }
