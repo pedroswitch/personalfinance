@@ -1,25 +1,24 @@
 package com.example.personalfinance.mapper;
 
-import com.example.personalfinance.domain.valueobjects.BudgetCategory;
-import com.example.personalfinance.domain.valueobjects.BudgetId;
-import com.example.personalfinance.domain.valueobjects.Values;
+import lombok.NoArgsConstructor;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
+@NoArgsConstructor
 public class BudgetDto extends RepresentationModel<BudgetDto>
 {
-    public BudgetId id;
-    public BudgetCategory category;
-    public Values value;
+    public long id;
+    public String category;
+    public double value;
 
-    public BudgetDto(BudgetId id, BudgetCategory category, Values value)
+    public BudgetDto(long id, String category, double value)
     {
         this.id = id;
         this.category = category;
         this.value = value;
     }
 
-    public BudgetDto(Link initialLink, BudgetId id, BudgetCategory category, Values value)
+    public BudgetDto(Link initialLink, long id, String category, double value)
     {
         super(initialLink);
         this.id = id;
@@ -27,7 +26,7 @@ public class BudgetDto extends RepresentationModel<BudgetDto>
         this.value = value;
     }
 
-    public BudgetDto(Iterable<Link> initialLinks, BudgetId id, BudgetCategory category, Values value)
+    public BudgetDto(Iterable<Link> initialLinks, long id, String category, double value)
     {
         super(initialLinks);
         this.id = id;
