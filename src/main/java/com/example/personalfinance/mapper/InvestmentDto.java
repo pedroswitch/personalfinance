@@ -1,22 +1,23 @@
 package com.example.personalfinance.mapper;
 
-import com.example.personalfinance.domain.valueobjects.*;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 public class InvestmentDto extends RepresentationModel<InvestmentDto>
 {
-    public InvestmentId id;
-    public InvestmentCategory category;
-    public InvestmentDescription description;
-    public Date purchaseDate;
-    public Date saleDate;
-    public InvestmentQty qty;
-    public Values value;
+    public long id;
+    public String category;
+    public String description;
+    public LocalDate purchaseDate;
+    public LocalDate saleDate;
+    public int qty;
+    public double value;
 
-    public InvestmentDto(InvestmentId id, InvestmentCategory category, InvestmentDescription description, Date purchaseDate, Date saleDate, InvestmentQty qty, Values value)
+    public InvestmentDto(long id, String category, String description, LocalDate purchaseDate, LocalDate saleDate, int qty, double value)
     {
         this.id = id;
         this.category = category;
@@ -27,7 +28,7 @@ public class InvestmentDto extends RepresentationModel<InvestmentDto>
         this.value = value;
     }
 
-    public InvestmentDto(Link initialLink, InvestmentId id, InvestmentCategory category, InvestmentDescription description, Date purchaseDate, Date saleDate, InvestmentQty qty, Values value)
+    public InvestmentDto(Link initialLink, long id, String category, String description, LocalDate purchaseDate, LocalDate saleDate, int qty, double value)
     {
         super(initialLink);
         this.id = id;
@@ -39,7 +40,7 @@ public class InvestmentDto extends RepresentationModel<InvestmentDto>
         this.value = value;
     }
 
-    public InvestmentDto(Iterable<Link> initialLinks, InvestmentId id, InvestmentCategory category, InvestmentDescription description, Date purchaseDate, Date saleDate, InvestmentQty qty, Values value)
+    public InvestmentDto(Iterable<Link> initialLinks, long id, String category, String description, LocalDate purchaseDate, LocalDate saleDate, int qty, double value)
     {
         super(initialLinks);
         this.id = id;
