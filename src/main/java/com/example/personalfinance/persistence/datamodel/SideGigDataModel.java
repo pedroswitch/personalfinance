@@ -11,16 +11,14 @@ import lombok.Getter;
 @Getter
 public class SideGigDataModel extends IncomeDataModel
 {
-    @Column(name = "sidgig_name")
-    private String sidegigName;
 
-    public SideGigDataModel()
+     public SideGigDataModel()
     {
     }
 
     public SideGigDataModel(Income income, String sidegigName)
     {
         super(income);
-        this.sidegigName = sidegigName;
+        setName(sidegigName);
     }
 }

@@ -11,8 +11,6 @@ import lombok.Getter;
 @Getter
 public class SalaryDataModel extends IncomeDataModel
 {
-    @Column(name = "name")
-    private String name;
 
     public SalaryDataModel()
     {
@@ -21,6 +19,6 @@ public class SalaryDataModel extends IncomeDataModel
     public SalaryDataModel(Income income, String employerName)
     {
         super(income);
-        this.name = employerName;
+        setName(employerName);
     }
 }

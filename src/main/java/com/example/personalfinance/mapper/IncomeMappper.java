@@ -31,7 +31,7 @@ public class IncomeMappper
 
         if (incomeDataModel.getType().equals(SIDE_GIG)) {
             SideGigDataModel income = (SideGigDataModel) incomeDataModel;
-            SideGigName name = new SideGigName(income.getSidegigName());
+            SideGigName name = new SideGigName(income.getName());
             return incomeFactory.createIncome(id, type, date, value, name);
         }
 

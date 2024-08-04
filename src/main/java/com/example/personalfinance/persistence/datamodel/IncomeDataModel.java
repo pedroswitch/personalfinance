@@ -3,6 +3,7 @@ package com.example.personalfinance.persistence.datamodel;
 import com.example.personalfinance.domain.income.Income;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "discriminator", discriminatorType = DiscriminatorType.STRING)
 @Getter
+@Setter
 public class IncomeDataModel
 {
     @Id
@@ -21,6 +23,7 @@ public class IncomeDataModel
     @Column(columnDefinition = "integer DEFAULT 0", nullable = false)
     private int version;
 
+    private String name;
     private String type;
     private LocalDate date;
 
