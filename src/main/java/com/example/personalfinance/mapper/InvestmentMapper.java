@@ -32,4 +32,34 @@ public class InvestmentMapper
         );
         return investments;
     }
+
+    public static InvestmentDto investmentToDto(Investment investment)
+    {
+        return new InvestmentDto(investment.getId().getId(), investment.getCategory().getCategory(), investment.getDescription().getDescription(), investment.getPurchaseDate().getDate(), investment.getSaleDate().getDate(), investment.getQty().getQty(), investment.getValue().getValue());
+    }
+
+    public static Iterable<InvestmentDto> investmentListToDto(Iterable<Investment> investments)
+    {
+        List<InvestmentDto> investmentListDto = new ArrayList<>();
+
+        investments.forEach(investment -> {
+            InvestmentDto investmentDto = investmentToDto(investment);
+            investmentListDto.add(investmentDto);
+        });
+
+        return investmentListDto;
+    }
+
+    public static Investment dtoToInvestment(InvestmentDto dto)
+    {
+        InvestmentFactory investmentFactory = new InvestmentFactory();
+        InvestmentId id = new InvestmentId(dto.id);
+        InvestmentCategory category = new InvestmentCategory(dto.category);
+        InvestmentDescription description = new InvestmentDescription(dto.description);
+        Date purchaseDate = new Date(dto.purchaseDate);
+        Date saleDate = new Date(dto.saleDate);
+        InvestmentQty qty = new InvestmentQty(dto.qty);
+        Values value = new Values(dto.value);
+        return investmentFactory.createInvestment(id, category, description, purchaseDate, saleDate, qty, value);
+    }
 }
