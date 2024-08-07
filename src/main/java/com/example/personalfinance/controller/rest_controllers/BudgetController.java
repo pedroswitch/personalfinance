@@ -18,7 +18,7 @@ public class BudgetController
     private final BudgetService budgetService;
 
     @PostMapping
-    public ResponseEntity<Object> addBudget(@RequestBody BudgetDto dto)
+    public ResponseEntity<BudgetDto> addBudget(@RequestBody BudgetDto dto)
     {
         Budget budget = BudgetMapper.dtoToBudget(dto);
         Budget budgetToAdd = budgetService.add(budget.getId(), budget.getCategory(), budget.getValue());

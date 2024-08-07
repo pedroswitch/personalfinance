@@ -18,7 +18,7 @@ public class InvestmentController
     private final InvestmentService investmentService;
 
     @PostMapping
-    public ResponseEntity<Object> addInvestment(@RequestBody InvestmentDto dto)
+    public ResponseEntity<InvestmentDto> addInvestment(@RequestBody InvestmentDto dto)
     {
         Investment investment = InvestmentMapper.dtoToInvestment(dto);
         Investment investmentToAdd = investmentService.add(investment.getId(), investment.getCategory(), investment.getDescription(), investment.getPurchaseDate(), investment.getSaleDate(), investment.getQty(), investment.getValue());
