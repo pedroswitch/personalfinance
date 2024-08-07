@@ -2,6 +2,7 @@ package com.example.personalfinance.service;
 
 import com.example.personalfinance.domain.expense.Expense;
 import com.example.personalfinance.domain.expense.ExpenseFactory;
+import com.example.personalfinance.domain.expense.InvoiceRegistration;
 import com.example.personalfinance.domain.repository.ExpenseRepo;
 import com.example.personalfinance.domain.valueobjects.*;
 import org.springframework.beans.factory.annotation.Qualifier;
