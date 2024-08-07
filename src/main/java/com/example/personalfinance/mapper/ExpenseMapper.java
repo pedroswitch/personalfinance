@@ -40,7 +40,7 @@ public class ExpenseMapper
             return expenseFactory.createExpense(id, type, supplier, category, value, initialDate, finalDate);
         }
 
-        return expenseFactory.createExpense(id, type, supplier, category, value);
+        return null;
     }
 
     public static Iterable<Expense> expensesDataModelToDomain(Iterable<ExpenseDataModel> expenseDataModels)
@@ -52,15 +52,17 @@ public class ExpenseMapper
         return expenses;
     }
 
-    public static ExpenseDto invoiceToExpenseDto(InvoiceRegistration invoice) {
-        return new ExpenseDto(invoice.getId(), invoice.getType(), invoice.getSupplier(), invoice.getCategory(), invoice.getValue(), invoice.getNumber(), invoice.getDate(), invoice.getStatus());
+    public static ExpenseDto invoiceToExpenseDto(Expense expense) {
+        InvoiceRegistration invoice = (InvoiceRegistration) expense;
+        return new ExpenseDto(invoice.getId().getId(), invoice.getType().getType(), invoice.getSupplier().getName(), invoice.getCategory().getCategory(), invoice.getValue().getValue(), invoice.getNumber().getNumber(), invoice.getDate().getDate(), invoice.getStatus().isStatus());
     }
 
-    public static ExpenseDto recBillToExpenseDto(RecurringBill recBill) {
-        return new ExpenseDto(recBill.getId(), recBill.getType(), recBill.getSupplier(), recBill.getCategory(), recBill.getValue(), recBill.getInitialDate(), recBill.getFinalDate());
+    public static ExpenseDto recBillToExpenseDto(Expense expense) {
+        RecurringBill recBill = (RecurringBill) expense;
+        return new ExpenseDto(recBill.getId().getId(), recBill.getType().getType(), recBill.getSupplier().getName(), recBill.getCategory().getCategory(), recBill.getValue().getValue(), recBill.getInitialDate().getDate(), recBill.getFinalDate().getDate());
     }
 
-    public static Iterable<ExpenseDto> invoiceListToDto(Iterable<InvoiceRegistration> invoices) {
+    public static Iterable<ExpenseDto> invoiceListToDto(Iterable<Expense> invoices) {
         List<ExpenseDto> expenseListDto = new ArrayList<>();
 
         invoices.forEach(invoice -> {
@@ -71,7 +73,7 @@ public class ExpenseMapper
         return expenseListDto;
     }
 
-    public static Iterable<ExpenseDto> recBillListToDto(Iterable<RecurringBill> recBills) {
+    public static Iterable<ExpenseDto> recBillListToDto(Iterable<Expense> recBills) {
         List<ExpenseDto> expenseListDto = new ArrayList<>();
 
         recBills.forEach(recBill -> {
@@ -85,27 +87,27 @@ public class ExpenseMapper
     public static Expense dtoToInvoice(ExpenseDto dto)
     {
         ExpenseFactory expenseFactory = new ExpenseFactory();
-        ExpenseId id = new ExpenseId(dto.id.getId());
-        ExpenseType type = new ExpenseType(dto.type.getType());
-        ExpenseSupplier supplier = new ExpenseSupplier(dto.supplier.getName());
-        ExpenseCategory category = new ExpenseCategory(dto.category.getCategory());
-        Values value = new Values(dto.value.getValue());
-        InvoiceNumber number = new InvoiceNumber(dto.number.getNumber());
-        Date date = new Date(dto.date.getDate());
-        ExpenseStatus status = new ExpenseStatus(dto.status.isStatus());
+        ExpenseId id = new ExpenseId(dto.id);
+        ExpenseType type = new ExpenseType(dto.type);
+        ExpenseSupplier supplier = new ExpenseSupplier(dto.supplier);
+        ExpenseCategory category = new ExpenseCategory(dto.category);
+        Values value = new Values(dto.value);
+        InvoiceNumber number = new InvoiceNumber(dto.number);
+        Date date = new Date(dto.date);
+        ExpenseStatus status = new ExpenseStatus(dto.status);
         return expenseFactory.createExpense(id, type, supplier, category, value, number, date, status);
     }
 
     public static Expense dtoToRecBill(ExpenseDto dto)
     {
         ExpenseFactory expenseFactory = new ExpenseFactory();
-        ExpenseId id = new ExpenseId(dto.id.getId());
-        ExpenseType type = new ExpenseType(dto.type.getType());
-        ExpenseSupplier supplier = new ExpenseSupplier(dto.supplier.getName());
-        ExpenseCategory category = new ExpenseCategory(dto.category.getCategory());
-        Values value = new Values(dto.value.getValue());
-        Date initialDate = new Date(dto.initialDate.getDate());
-        Date finalDate = new Date(dto.finalDate.getDate());
+        ExpenseId id = new ExpenseId(dto.id);
+        ExpenseType type = new ExpenseType(dto.type);
+        ExpenseSupplier supplier = new ExpenseSupplier(dto.supplier);
+        ExpenseCategory category = new ExpenseCategory(dto.category);
+        Values value = new Values(dto.value);
+        Date initialDate = new Date(dto.initialDate);
+        Date finalDate = new Date(dto.finalDate);
         return expenseFactory.createExpense(id, type, supplier, category, value, initialDate, finalDate);
     }
 
