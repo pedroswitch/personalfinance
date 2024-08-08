@@ -4,6 +4,7 @@ import com.example.personalfinance.domain.payment.Payment;
 import com.example.personalfinance.domain.repository.PaymentRepo;
 import com.example.personalfinance.domain.valueobjects.PaymentId;
 import com.example.personalfinance.mapper.PaymentMapper;
+import com.example.personalfinance.persistence.datamodel.ExpenseDataModel;
 import com.example.personalfinance.persistence.datamodel.PaymentDataModel;
 import org.springframework.stereotype.Repository;
 
@@ -13,16 +14,19 @@ import java.util.Optional;
 public class PaymentRepoSpringData implements PaymentRepo
 {
     private final PaymentRepoSpringDataInterface paymentInterface;
+    private final ExpenseRepoSringDataInterface expenseInterface;
 
-    public PaymentRepoSpringData(PaymentRepoSpringDataInterface paymentInterface)
+    public PaymentRepoSpringData(PaymentRepoSpringDataInterface paymentInterface, ExpenseRepoSringDataInterface expenseInterface)
     {
         this.paymentInterface = paymentInterface;
+        this.expenseInterface = expenseInterface;
     }
 
     @Override
     public Payment save(Payment payment)
     {
-        PaymentDataModel paymentDataModel = new PaymentDataModel(payment);
+        Optional<ExpenseDataModel> expenseDataModel = expenseInterface.findById(payment.getExpenseId().getId());
+        PaymentDataModel paymentDataModel = new PaymentDataModel(payment, expenseDataModel);
         PaymentDataModel result = paymentInterface.save(paymentDataModel);
         return PaymentMapper.paymentDataModelToDomain(result);
     }
