@@ -54,8 +54,7 @@ public class BudgetController
     {
         Budget budget = budgetService.findById(id);
         if (budget == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Budget with id " + id + " not found!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.status(HttpStatus.OK).body(BudgetResourceHandler.manageFindById(BudgetMapper.budgetToDto(budget)));
     }

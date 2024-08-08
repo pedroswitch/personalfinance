@@ -62,8 +62,7 @@ public class InvestmentController
         if (investment == null)
         {
             return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body("Investment with id " + id + " not found!");
+                    .status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity
                 .status(HttpStatus.OK)

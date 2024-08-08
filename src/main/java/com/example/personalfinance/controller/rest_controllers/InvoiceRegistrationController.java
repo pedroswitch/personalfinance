@@ -56,9 +56,10 @@ public class InvoiceRegistrationController
     {
         Expense invoice = invoiceRegistrationService.findById(id);
         if (invoice == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Invoice with id " + id + " not found!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).body(InvoiceRegistrationResourceHandler.manageFindId(ExpenseMapper.invoiceToExpenseDto(invoice)));
+        return ResponseEntity.status(HttpStatus.OK).body(
+                InvoiceRegistrationResourceHandler.manageFindId(ExpenseMapper.invoiceToExpenseDto(invoice))
+        );
     }
 }
