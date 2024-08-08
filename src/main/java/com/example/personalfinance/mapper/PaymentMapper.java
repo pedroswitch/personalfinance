@@ -29,4 +29,30 @@ public class PaymentMapper
         );
         return payments;
     }
+
+    public static PaymentDto paymentToDto(Payment payment)
+    {
+        return new PaymentDto(payment.getId().getId(), payment.getExpenseId().getId(), payment.getPaymentDate().getDate());
+    }
+
+    public static Iterable<PaymentDto> paymentListToDto(Iterable<Payment> payments)
+    {
+        List<PaymentDto> paymentListDto = new ArrayList<>();
+
+        payments.forEach(payment -> {
+            PaymentDto paymentDto = paymentToDto(payment);
+            paymentListDto.add(paymentDto);
+        });
+
+        return paymentListDto;
+    }
+
+    public static Payment dtoToPayment(PaymentDto dto)
+    {
+        PaymentFactory paymentFactory = new PaymentFactory();
+        PaymentId id = new PaymentId(dto.id);
+        ExpenseId expenseId = new ExpenseId(dto.expenseId);
+        Date paymentDate = new Date(dto.paymentDate);
+        return paymentFactory.createPayment(id, expenseId, paymentDate);
+    }
 }
