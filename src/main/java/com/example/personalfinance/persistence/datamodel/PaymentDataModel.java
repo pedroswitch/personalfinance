@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity
 @Table(name="payment")
@@ -30,9 +31,10 @@ public class PaymentDataModel
     {
     }
 
-    public PaymentDataModel(Payment payment)
+    public PaymentDataModel(Payment payment, Optional<ExpenseDataModel> expenseDataModel)
     {
         this.id = payment.identity().getId();
+        if (expenseDataModel.isPresent()) this.expense = expenseDataModel.get();
         this.paymentDate = payment.getPaymentDate().getDate();
     }
 }
