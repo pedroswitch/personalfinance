@@ -1,27 +1,26 @@
 package com.example.personalfinance.mapper;
 
-import com.example.personalfinance.domain.valueobjects.Date;
-import com.example.personalfinance.domain.valueobjects.ExpenseId;
-import com.example.personalfinance.domain.valueobjects.PaymentId;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 public class PaymentDto extends RepresentationModel<PaymentDto>
 {
-    public PaymentId id;
-    public ExpenseId expenseId;
-    public Date paymentDate;
+    public long id;
+    public long expenseId;
+    public LocalDate paymentDate;
 
-    public PaymentDto(PaymentId id, ExpenseId expenseId, Date paymentDate)
+    public PaymentDto(long id, long expenseId, LocalDate paymentDate)
     {
         this.id = id;
         this.expenseId = expenseId;
         this.paymentDate = paymentDate;
     }
 
-    public PaymentDto(Link initialLink, PaymentId id, ExpenseId expenseId, Date paymentDate)
+    public PaymentDto(Link initialLink, long id, long expenseId, LocalDate paymentDate)
     {
         super(initialLink);
         this.id = id;
@@ -29,7 +28,7 @@ public class PaymentDto extends RepresentationModel<PaymentDto>
         this.paymentDate = paymentDate;
     }
 
-    public PaymentDto(Iterable<Link> initialLinks, PaymentId id, ExpenseId expenseId, Date paymentDate)
+    public PaymentDto(Iterable<Link> initialLinks, long id, long expenseId, LocalDate paymentDate)
     {
         super(initialLinks);
         this.id = id;
