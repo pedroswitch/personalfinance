@@ -12,22 +12,6 @@ public class ExpenseFactory
 
     public static final String PATH = "com.example.personalfinance.domain.expense.";
 
-//    public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value)
-//    {
-//        try {
-//            String fullPath = PATH + type.getType();
-//
-//            return (Expense) Class.forName(fullPath)
-//                    .getConstructor(ExpenseId.class, ExpenseType.class, ExpenseSupplier.class, ExpenseCategory.class, Values.class)
-//                    .newInstance(id, type, supplier, category, value);
-//        } catch (ClassNotFoundException | InstantiationException |
-//                 NoSuchMethodException | NullPointerException |
-//                 InvocationTargetException | IllegalArgumentException |
-//                 IllegalAccessException e) {
-//            return null;
-//        }
-//    }
-
     // InvoiceRegistration
     public Expense createExpense(ExpenseId id, ExpenseType type, ExpenseSupplier supplier, ExpenseCategory category, Values value, InvoiceNumber number, Date date, ExpenseStatus status)
     {
