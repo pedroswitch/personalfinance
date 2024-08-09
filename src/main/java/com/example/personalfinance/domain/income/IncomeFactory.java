@@ -11,23 +11,7 @@ import java.util.Optional;
 public class IncomeFactory
 {
 
-    public static final String PATH = "com.example.personalfinance.domain.income";
-
-    public Income createIncome(IncomeId id, IncomeType type, Date date, Values value)
-    {
-        try {
-            String fullPath = PATH + type.getType();
-
-            return (Income) Class.forName(fullPath)
-                    .getConstructor(IncomeId.class, IncomeType.class, Date.class, Values.class)
-                    .newInstance(id, type, date, value);
-        } catch (ClassNotFoundException | InstantiationException |
-                 NoSuchMethodException | NullPointerException |
-                InvocationTargetException | IllegalArgumentException |
-                IllegalAccessException e) {
-            return null;
-        }
-    }
+    public static final String PATH = "com.example.personalfinance.domain.income.";
 
     public Income createIncome(IncomeId id, IncomeType type, Date date, Values value, EmployerName name)
     {
@@ -41,6 +25,8 @@ public class IncomeFactory
                  NoSuchMethodException | NullPointerException |
                  InvocationTargetException | IllegalArgumentException |
                  IllegalAccessException e) {
+
+            e.printStackTrace();
             return null;
         }
     }
@@ -57,6 +43,8 @@ public class IncomeFactory
                  NoSuchMethodException | NullPointerException |
                  InvocationTargetException | IllegalArgumentException |
                  IllegalAccessException e) {
+
+            e.printStackTrace();
             return null;
         }
     }
