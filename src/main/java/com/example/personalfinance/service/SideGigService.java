@@ -5,7 +5,7 @@ import com.example.personalfinance.domain.income.IncomeFactory;
 import com.example.personalfinance.domain.repository.IncomeRepo;
 import com.example.personalfinance.domain.valueobjects.*;
 import org.springframework.beans.factory.annotation.Qualifier;
-Aimport org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Optional;
