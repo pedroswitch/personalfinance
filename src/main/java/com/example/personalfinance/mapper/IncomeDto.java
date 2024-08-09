@@ -1,23 +1,23 @@
 package com.example.personalfinance.mapper;
 
-import com.example.personalfinance.domain.valueobjects.*;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 public class IncomeDto extends RepresentationModel<IncomeDto>
 {
-    public IncomeId id;
-    public IncomeType type;
-    public Date date;
-    public Values value;
-    public EmployerName employerName;
-    public SideGigName sideGigName;
+    public long id;
+    public String type;
+    public LocalDate date;
+    public double value;
+    public String employerName;
+    public String sideGigName;
 
     // Salary
-
-    public IncomeDto(IncomeId id, IncomeType type, Date date, Values value, EmployerName employerName)
+    public IncomeDto(long id, String type, LocalDate date, String employerName, double value)
     {
         this.id = id;
         this.type = type;
@@ -26,7 +26,7 @@ public class IncomeDto extends RepresentationModel<IncomeDto>
         this.employerName = employerName;
     }
 
-    public IncomeDto(Link initialLink, IncomeId id, IncomeType type, Date date, Values value, EmployerName employerName)
+    public IncomeDto(Link initialLink, long id, String type, LocalDate date, String employerName, double value)
     {
         super(initialLink);
         this.id = id;
@@ -36,7 +36,7 @@ public class IncomeDto extends RepresentationModel<IncomeDto>
         this.employerName = employerName;
     }
 
-    public IncomeDto(Iterable<Link> initialLinks, IncomeId id, IncomeType type, Date date, Values value, EmployerName employerName)
+    public IncomeDto(Iterable<Link> initialLinks, long id, String type, LocalDate date, String employerName, double value)
     {
         super(initialLinks);
         this.id = id;
@@ -47,8 +47,7 @@ public class IncomeDto extends RepresentationModel<IncomeDto>
     }
 
     // SideGig
-
-    public IncomeDto(IncomeId id, IncomeType type, Date date, Values value, SideGigName sideGigName)
+    public IncomeDto(long id, String type, LocalDate date, double value, String sideGigName)
     {
         this.id = id;
         this.type = type;
@@ -57,7 +56,7 @@ public class IncomeDto extends RepresentationModel<IncomeDto>
         this.sideGigName = sideGigName;
     }
 
-    public IncomeDto(Link initialLink, IncomeId id, IncomeType type, Date date, Values value, SideGigName sideGigName)
+    public IncomeDto(Link initialLink, long id, String type, LocalDate date, double value, String sideGigName)
     {
         super(initialLink);
         this.id = id;
@@ -67,7 +66,7 @@ public class IncomeDto extends RepresentationModel<IncomeDto>
         this.sideGigName = sideGigName;
     }
 
-    public IncomeDto(Iterable<Link> initialLinks, IncomeId id, IncomeType type, Date date, Values value, SideGigName sideGigName)
+    public IncomeDto(Iterable<Link> initialLinks, long id, String type, LocalDate date, double value, String sideGigName)
     {
         super(initialLinks);
         this.id = id;
