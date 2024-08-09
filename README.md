@@ -10,4 +10,4 @@ The objective is to practice:
 5. Front-end development (with REACT);
 6. SOLID principles and GRASP patterns.
 
-Now: developing the controllers and testing them with Postman.
+Finished backend.
